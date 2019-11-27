@@ -41,3 +41,15 @@ export function highlight(s: string, term: string): React.ReactFragment {
 
   return s
 }
+
+export function getChildrenText(children) {
+  let label = ""
+
+  React.Children.map(children, child => {
+    if (typeof child == "string") {
+      label += child
+    }
+  })
+
+  return label
+}

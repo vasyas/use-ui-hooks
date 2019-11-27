@@ -27,6 +27,10 @@
   }
 }
 
+.inline-edit {
+  position: relative;
+}
+
 .table .inline-edit {
   input {
     background-image: none;
@@ -43,11 +47,13 @@
   }
 
   .inline-edit-controls {
-    bottom: 0px;
+    bottom: 0;
+    right: 0;
   }
 
   .inline-edit-spinner {
     bottom: 0;
+    right: -2px;
   }
 }
 
