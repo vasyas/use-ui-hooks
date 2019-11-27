@@ -1,0 +1,52 @@
+.inline-edit-spinner {
+  position: absolute;
+  right: 10px;
+  bottom: 4px;
+}
+
+.inline-edit-controls {
+  position: absolute;
+  right: 15px;
+  bottom: 6px;
+
+  display: flex;
+  align-items: stretch;
+
+  .delim {
+    background: #ddd;
+    width: 1px;
+    margin: 2px 12px;
+  }
+
+  .save {
+    color: green;
+  }
+
+  .cancel {
+    color: #000;
+  }
+}
+
+.table .inline-edit {
+  input {
+    background-image: none;
+    height: inherit;
+  }
+
+  .select__control {
+    background-image: none;
+    height: inherit;
+  }
+
+  .select__dropdown-indicator {
+    display: none;
+  }
+
+  .inline-edit-controls {
+    bottom: 0px;
+  }
+
+  .inline-edit-spinner {
+    bottom: 0;
+  }
+}
