@@ -26,6 +26,7 @@
     "classnames": "^2.2.6"
   },
   "optionalDependencies": {
-    "push-rpc": "^1.0.4"
+    "push-rpc": "^1.0.4",
+    "react-select": "^3.0.8"
   }
 }
