@@ -94,6 +94,7 @@ export function Select<D, P>({
   return (
     <FormGroup label={label} invalidFeedback={field.getError()}>
       <AsyncSelect
+        className="select"
         key={JSON.stringify(params) + "-" + JSON.stringify(options)}
         ref={ref}
         styles={styles}
