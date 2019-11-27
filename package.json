@@ -1,5 +1,5 @@
 {
-  "name": "use-ui",
+  "name": "react-use-ui",
   "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

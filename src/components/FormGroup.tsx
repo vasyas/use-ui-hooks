@@ -16,8 +16,8 @@ export const FormGroup = ({
 
   return (
     <div className="form-group">
-      {label && <label className="col-md-3">{label}</label>}
-      <div className="col-md-9">
+      {label && <label className={classNames.label}>{label}</label>}
+      <div className={classNames.field}>
         {children}
         {invalidFeedback && <div className="invalid-feedback form-text">{invalidFeedback}</div>}
       </div>

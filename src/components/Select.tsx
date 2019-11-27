@@ -3,7 +3,6 @@ import {useEffect, useRef, useState} from "react"
 import AsyncSelect from "react-select/async"
 import "react-bootstrap-typeahead/css/Typeahead.css"
 import {Topic} from "push-rpc"
-import "./Select.scss"
 import {components} from "react-select"
 import {highlight} from "../utils"
 import {Constraint} from "../validate"
@@ -23,6 +22,7 @@ interface Props<D, P> extends Partial<Constraint>, FormGroupProps {
   map?: (D) => Option
 
   options?: Option[] | object
+  right?: any
 }
 
 export function Select<D, P>({
@@ -34,6 +34,7 @@ export function Select<D, P>({
   map = i => i as any,
 
   options,
+  right,
 
   ...other
 }: Props<D, P>) {
@@ -112,6 +113,7 @@ export function Select<D, P>({
         onFocus={field.onFocus}
         onChange={onChange}
       />
+      {right}
     </FormGroup>
   )
 }

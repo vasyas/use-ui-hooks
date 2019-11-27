@@ -8,9 +8,10 @@ interface Props extends Partial<Constraint>, FormGroupProps {
   field: Field
   autoFocus?: boolean
   disabled?: boolean
+  right?: any
 }
 
-export const Input = ({field, label, autoFocus, disabled, ...other}: Props) => {
+export const Input = ({field, label, autoFocus, disabled, right, ...other}: Props) => {
   const ref = useRef<HTMLInputElement>()
 
   field.setFieldElement({
@@ -32,6 +33,7 @@ export const Input = ({field, label, autoFocus, disabled, ...other}: Props) => {
         autoFocus={autoFocus}
         disabled={disabled}
       />
+      {right}
     </FormGroup>
   )
 }

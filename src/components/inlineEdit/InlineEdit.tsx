@@ -1,14 +1,13 @@
 import * as React from "react"
 import {CSSProperties, useEffect, useRef, useState} from "react"
-import "./InlineEdit.scss"
-import "./Spinner.scss"
-import {Field, FieldElement} from "../useForm"
+import {Field, FieldElement} from "../../useForm"
+import {FormGroupProps} from "../FormGroup"
 
-interface Props {
+interface Props extends FormGroupProps {
   value: string
   save(value): Promise<void>
   component: (props: FieldComponentProps) => React.ReactElement
-  children?: any
+  label?: any
   cancel?: boolean
   style?: CSSProperties
 }
@@ -16,7 +15,7 @@ interface Props {
 interface FieldComponentProps {
   field: Field
   right?: any
-  children?: any
+  label?: any
 }
 
 export const InlineEdit = (p: Props) => {
@@ -130,12 +129,11 @@ export const InlineEdit = (p: Props) => {
     <div className="inline-edit" style={props.style}>
       <FieldComponent
         field={field}
+        label={props.label}
         right={
           saving ? <Spinner /> : <div className="inline-edit-controls">{renderControls()}</div>
         }
-      >
-        {props.children}
-      </FieldComponent>
+      />
     </div>
   )
 }
