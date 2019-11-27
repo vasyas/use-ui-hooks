@@ -24,3 +24,12 @@ export const FormGroup = ({
     </div>
   )
 }
+
+const classNames = {
+  label: "col-md-3",
+  field: "col-md-9",
+}
+
+export function setFormGroupClassNames(p: Partial<typeof classNames>) {
+  Object.assign(classNames, p)
+}
