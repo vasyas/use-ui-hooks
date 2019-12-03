@@ -1,6 +1,6 @@
 export {useAction} from "./useAction"
 export {ResultContext, useResult} from "./result"
 export {useTopic} from "./useTopic"
-export {useForm, Field} from "./useForm"
+export {useForm, Field, FieldElement} from "./useForm"
 export {usePrevious} from "./utils"
 export {Constraint, ValidateMessages} from "./validate"

@@ -1,6 +1,5 @@
-import {useEffect, useRef, useState} from "react"
+import {useRef, useState} from "react"
 import {Constraint, enValidateMessages, message} from "./validate"
-import {usePrevious} from "./utils"
 import {useAction} from "./useAction"
 
 export function useForm<F>(initialFieldData?: F): Form<F> {
@@ -10,21 +9,13 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
 
   const action = useAction()
 
-  // events
-  const previousValues = usePrevious(values)
+  function valueToData(name, value: string): any {
+    return value ? value : null
+  }
 
-  const onChangeListeners: {[fieldName: string]: (s) => void} = {}
-
-  useEffect(() => {
-    // fire onchange
-    for (const fieldName of Object.keys(onChangeListeners)) {
-      if (values[fieldName] != (previousValues || {})[fieldName]) {
-        onChangeListeners[fieldName](values[fieldName])
-      }
-    }
-  }, [values])
-
-  // /events
+  function dataToValue(name, data: any): string {
+    return data ? data : ""
+  }
 
   function getActionFields(): F {
     return Object.keys(fieldElements.current).reduce((r, name) => {
@@ -56,8 +47,7 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
     if (values[name]) return values[name]
 
     if (initialFieldData) {
-      // TODO convert to value using data type (pass type)
-      return "" + initialFieldData[name]
+      return dataToValue(name, initialFieldData[name])
     }
 
     return ""
@@ -96,9 +86,6 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
         }
       },
       onFocus() {},
-      onChange(handler: (s: string) => void) {
-        onChangeListeners[name] = handler
-      },
     }
   }
 
@@ -147,6 +134,16 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
     )
   }
 
+  function createData(): any {
+    const r = {...initialFieldData}
+
+    for (const name of Object.keys(values)) {
+      r[name] = valueToData(name, values[name])
+    }
+
+    return r
+  }
+
   function revalidate() {
     const errors = {}
 
@@ -165,11 +162,13 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
     return focused
   }
 
-  // use ref for fields?
+  // use ref for fields and data?
   const fields = createFields()
+  const data = createData()
 
   return {
     fields,
+    data,
 
     error: action.error,
     progress: action.progress,
@@ -179,6 +178,7 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
 
 export interface Form<F> {
   fields: Fields<F>
+  data: F
 
   error: string
   progress: boolean
@@ -196,8 +196,6 @@ export interface Field {
   onBlur(): void
   onFocus(): void
   getError(): string
-
-  onChange(handler: (value: string) => void): void
 }
 
 export interface FieldElement {
