@@ -10,7 +10,7 @@ export function useResult(): Result {
 
 interface ResultContextProps {
   children: any
-  addHistoryChangeListener(handler: () => void): void
+  addHistoryChangeListener?(handler: () => void): void
 }
 
 export function ResultContext(props: ResultContextProps) {
@@ -24,10 +24,11 @@ export function ResultContext(props: ResultContextProps) {
   })
 
   useEffect(() => {
-    props.addHistoryChangeListener(() => {
-      resultState.setResult(null)
-    })
-  })
+    props.addHistoryChangeListener &&
+      props.addHistoryChangeListener(() => {
+        resultState.setResult(null)
+      })
+  }, [])
 
   return <resultContext.Provider value={resultState}>{props.children}</resultContext.Provider>
 }
