@@ -1,29 +1,21 @@
 import {useRef, useState} from "react"
 import {Constraint, enValidateMessages, message} from "./validate"
 import {useAction} from "./useAction"
+import {FieldType, FieldTypeName, getFieldType} from "./fieldTypes"
 
 export function useForm<F>(initialFieldData?: F): Form<F> {
   const [errors, setErrors] = useState<Errors<F>>({})
   const [values, setValues] = useState<Values<F>>({})
-  const fieldElements = useRef<Values<F>>({})
+  const fieldElements = useRef<FieldElements<F>>({})
 
   const action = useAction()
-
-  function valueToData(name, value: string): any {
-    return value ? value : null
-  }
-
-  function dataToValue(name, data: any): string {
-    return data ? data : ""
-  }
 
   function getActionFields(): F {
     return Object.keys(fieldElements.current).reduce((r, name) => {
       let d
 
       if (typeof values[name] != undefined) {
-        // TODO convert to value using data type (pass type)
-        d = +values[name]
+        d = getConfiguredFieldType(name).valueToData(values[name])
       } else {
         d = initialFieldData[name]
       }
@@ -47,10 +39,19 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
     if (values[name]) return values[name]
 
     if (initialFieldData) {
-      return dataToValue(name, initialFieldData[name])
+      return getConfiguredFieldType(name).dataToValue(initialFieldData[name])
     }
 
     return ""
+  }
+
+  function getConfiguredFieldType(name): FieldType<any> {
+    const typeName =
+      fieldElements.current[name] && fieldElements.current[name].type
+        ? fieldElements.current[name].type
+        : "string"
+
+    return getFieldType(typeName)
   }
 
   function createField(name): Field {
@@ -138,7 +139,7 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
     const r = {...initialFieldData}
 
     for (const name of Object.keys(values)) {
-      r[name] = valueToData(name, values[name])
+      r[name] = getConfiguredFieldType(name).valueToData(values[name])
     }
 
     return r
@@ -188,6 +189,7 @@ export interface Form<F> {
 type Values<F> = Partial<{[P in keyof F]: string}>
 type Errors<F> = Partial<{[P in keyof F]: string}>
 type Fields<F> = Partial<{[P in keyof F]: Field}>
+type FieldElements<F> = Partial<{[P in keyof F]: FieldElement}>
 
 export interface Field {
   setFieldElement(fieldElement: FieldElement): void
@@ -200,6 +202,7 @@ export interface Field {
 
 export interface FieldElement {
   constraint: Partial<Constraint>
+  type?: FieldTypeName
   focus(): void
   blur(): void
 }
