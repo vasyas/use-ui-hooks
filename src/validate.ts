@@ -5,7 +5,11 @@ export interface Constraint {
   nonNegative: boolean
 }
 
-export function message(constraint: Constraint, value: any, validateMessages: ValidateMessages) {
+export function message(
+  constraint: Partial<Constraint>,
+  value: any,
+  validateMessages: ValidateMessages
+) {
   if (!constraint) return
 
   if (value == null) value = ""
