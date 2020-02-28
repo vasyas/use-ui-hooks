@@ -84,3 +84,5 @@ Input are implemented in separate libraries, for example see @use-ui/bootstrap3.
 Besides fields, useAction return `progress`, `action` and `error` which behaves almost the same as in `useAction`.
 But in addition to `useAction`, action methods receive current field values on invocations.
   
+`useForm` take a single optional parameter which is the default values for the form.
+ 
