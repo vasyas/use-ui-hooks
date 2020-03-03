@@ -36,7 +36,7 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
   }
 
   function getFieldValue(name) {
-    if (values[name]) return values[name]
+    if (values[name] !== undefined) return values[name]
 
     if (initialFieldData) {
       return getConfiguredFieldType(name).dataToValue(initialFieldData[name])
