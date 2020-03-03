@@ -20,6 +20,11 @@ const fieldTypes: {[name: string]: FieldType<any>} = {
     dataToValue: (data: boolean): string => (data != null ? "" + data : ""),
     valueToData: (value: string): boolean => (value ? "true" == value : null),
   },
+
+  stringList: {
+    dataToValue: (data: string[]): string => (data != null ? data.join(",") : ""),
+    valueToData: (value: string): string[] => (value ? value.split(",") : null),
+  },
 }
 
 export function getFieldType(typeName): FieldType<any> {
