@@ -5,16 +5,19 @@ import {useCallback, useEffect, useState} from "react"
 export function useTopic<D, P>(
   topic: Topic<D, P>,
   params: P = {} as any,
-  def: Partial<D> = undefined
-): {data: Partial<D>} {
+  def?: Partial<D>
+): {data: Partial<D>; loading: boolean} {
   const [data, setData] = useState<Partial<D>>(def)
+  const [loading, setLoading] = useState<boolean>(true)
 
   const receiveData = useCallback(data => {
+    setLoading(false)
     setData(data)
   }, [])
 
   useEffect(() => {
     if (params) {
+      setLoading(true)
       topic.subscribe(receiveData, params)
     }
 
@@ -25,5 +28,5 @@ export function useTopic<D, P>(
     }
   }, [JSON.stringify(params)])
 
-  return {data}
+  return {data, loading}
 }
