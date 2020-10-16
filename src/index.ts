@@ -1,7 +1,7 @@
 export {useAction} from "./useAction"
 export {ResultContext, useResult} from "./result"
 export {useTopic} from "./useTopic"
-export {useForm, Field, FieldElement} from "./useForm"
+export {useForm, Field, FieldElement, Form} from "./useForm"
 export {FieldTypeName, getFieldType} from "./fieldTypes"
 export {usePrevious, oneTimeField} from "./utils"
 export {Constraint, ValidateMessages} from "./validate"

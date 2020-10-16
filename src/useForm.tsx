@@ -1,7 +1,7 @@
 import {useRef, useState} from "react"
-import {Constraint, enValidateMessages, message} from "./validate"
-import {useAction} from "./useAction"
 import {FieldType, FieldTypeName, getFieldType} from "./fieldTypes"
+import {useAction} from "./useAction"
+import {Constraint, enValidateMessages, message} from "./validate"
 
 export function useForm<F>(initialFieldData?: F): Form<F> {
   const [errors, setErrors] = useState<Errors<F>>({})
@@ -137,7 +137,7 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
     )
   }
 
-  function createData(): any {
+  function createData(): F {
     const r = {...initialFieldData}
 
     for (const name of Object.keys(values)) {
@@ -165,6 +165,25 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
     return focused
   }
 
+  function updateValues(update: Partial<Values<F>>) {
+    setValues({
+      ...values,
+      update,
+    })
+
+    const updatedErrors = Object.keys(update).reduce((r, name) => {
+      return {
+        ...r,
+        [name]: validate(name),
+      }
+    }, {})
+
+    setErrors({
+      ...errors,
+      ...updatedErrors,
+    })
+  }
+
   // use ref for fields and data?
   const fields = createFields()
   const data = createData()
@@ -172,6 +191,7 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
   return {
     fields,
     data,
+    updateValues,
 
     error: action.error,
     progress: action.progress,
@@ -182,6 +202,7 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
 export interface Form<F> {
   fields: Fields<F>
   data: F
+  updateValues(update: Partial<Values<F>>)
 
   error: string
   progress: boolean
