@@ -168,7 +168,7 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
   function updateValues(update: Partial<Values<F>>) {
     setValues({
       ...values,
-      update,
+      ...update,
     })
 
     const updatedErrors = Object.keys(update).reduce((r, name) => {
