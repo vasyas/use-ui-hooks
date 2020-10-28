@@ -48,12 +48,8 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
   }
 
   function getConfiguredFieldType(name): FieldType<any> {
-    const typeName =
-      fieldElements.current[name] && fieldElements.current[name].type
-        ? fieldElements.current[name].type
-        : "string"
-
-    return getFieldType(typeName)
+    const type = fieldElements.current[name]?.type ?? "string"
+    return typeof type == "string" ? getFieldType(type) : type
   }
 
   function createField(name): Field {
@@ -225,7 +221,7 @@ export interface Field {
 
 export interface FieldElement {
   constraint: Partial<Constraint>
-  type?: FieldTypeName
+  type?: FieldTypeName | FieldType<unknown>
   focus(): void
   blur(): void
 }
