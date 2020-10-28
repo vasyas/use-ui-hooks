@@ -1,6 +1,6 @@
 import {useRef, useState} from "react"
 import {FieldType, FieldTypeName, getFieldType} from "./fieldTypes"
-import {useAction} from "./useAction"
+import {TrackedAction, useAction} from "./useAction"
 import {Constraint, enValidateMessages, message} from "./validate"
 
 export function useForm<F>(initialFieldData?: F): Form<F> {
@@ -27,13 +27,13 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
     }, {} as F)
   }
 
-  function formAction(impl: FormActionImpl<F>) {
-    return action.action(async () => {
-      if (revalidate()) {
+  function formAction<P>(impl: FormActionImpl<F, P>, options = {validate: true}): TrackedAction<P> {
+    return action.action<P>(async p => {
+      if (options.validate && revalidate()) {
         return
       }
 
-      await impl(getActionFields())
+      await impl(getActionFields(), p)
     })
   }
 
@@ -202,7 +202,7 @@ export interface Form<F> {
 
   error: string
   progress: boolean
-  action(impl: FormActionImpl<F>): () => void
+  action<P>(impl: FormActionImpl<F, P>, options?: {validate: boolean}): TrackedAction<P>
 }
 
 type Values<F> = Partial<{[P in keyof F]: string}>
@@ -226,7 +226,7 @@ export interface FieldElement {
   blur(): void
 }
 
-type FormActionImpl<F> = (fields: F) => Promise<void>
+export type FormActionImpl<F, P = void> = (fields: F, p?: P) => Promise<void>
 
 // To disable validation on special occasions (ie selecting item on custom selects)
 let disableBlurValidation = false
