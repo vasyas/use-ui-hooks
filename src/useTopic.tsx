@@ -5,9 +5,9 @@ import {useCallback, useEffect, useState} from "react"
 export function useTopic<D, P>(
   topic: Topic<D, P>,
   params: P = {} as any,
-  def?: Partial<D>
-): {data: Partial<D>; loading: boolean} {
-  const [data, setData] = useState<Partial<D>>(def)
+  def?: D
+): {data: D; loading: boolean} {
+  const [data, setData] = useState<D>(def)
   const [loading, setLoading] = useState<boolean>(true)
 
   const receiveData = useCallback(data => {
