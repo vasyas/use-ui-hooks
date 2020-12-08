@@ -2,9 +2,17 @@ import {Topic} from "@push-rpc/core"
 import * as React from "react"
 import {useCallback, useEffect, useState} from "react"
 
+/**
+ * Subscribe to a topic with parameters
+ * If params is falsy, no subscription will be performed. This is usefull to skip subscriptin "parent" data is loaded.
+ *
+ * @param topic
+ * @param params
+ * @param def
+ */
 export function useTopic<D, P>(
   topic: Topic<D, P>,
-  params: P = {} as any,
+  params: P,
   def?: D
 ): {data: D; loading: boolean} {
   const [data, setData] = useState<D>(def)
