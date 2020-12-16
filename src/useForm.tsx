@@ -1,4 +1,4 @@
-import {useRef, useState} from "react"
+import {useRef, useState, useEffect} from "react"
 import {FieldType, FieldTypeName, getFieldType} from "./fieldTypes"
 import {TrackedAction, useAction} from "./useAction"
 import {Constraint, enValidateMessages, message} from "./validate"
@@ -37,8 +37,8 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
     })
   }
 
-  function getFieldValue(name) {
-    if (values[name] !== undefined) return values[name]
+  function getFieldValue(name, currentValues = values) {
+    if (currentValues[name] !== undefined) return currentValues[name]
 
     if (initialFieldData) {
       return getConfiguredFieldType(name).dataToValue(initialFieldData[name])
@@ -61,12 +61,14 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
         return getFieldValue(name)
       },
       setValue(s: string) {
-        setValues({
+        const newValues = {
           ...values,
           [name]: s,
-        })
+        }
 
-        if (errors[name]) updateValidationError(name)
+        setValues(newValues)
+
+        if (errors[name]) updateValidationError(name, newValues)
       },
       getError() {
         return errors[name]
@@ -106,17 +108,20 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
     return false
   }
 
-  function updateValidationError(name) {
-    const error = validate(name)
+  function updateValidationError(name, currentValues = values) {
+    const error = validate(name, currentValues)
     setErrors({
       ...errors,
       [name]: error,
     })
   }
 
-  function validate(name) {
-    const value = getFieldValue(name)
-    return message(fieldElements.current[name].constraint, value, enValidateMessages)
+  function validate(name, currentValues = values) {
+    const fieldElement = fieldElements.current[name]
+    if (!fieldElement) return
+
+    const value = getFieldValue(name, currentValues)
+    return message(fieldElement.constraint, value, enValidateMessages)
   }
 
   function createFields() {
@@ -162,15 +167,17 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
   }
 
   function updateValues(update: Partial<Values<F>>) {
-    setValues({
+    const newValues = {
       ...values,
       ...update,
-    })
+    }
+
+    setValues(newValues)
 
     const updatedErrors = Object.keys(update).reduce((r, name) => {
       return {
         ...r,
-        [name]: validate(name),
+        [name]: validate(name, newValues),
       }
     }, {})
 
@@ -183,6 +190,8 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
   // use ref for fields and data?
   const fields = createFields()
   const data = createData()
+
+  // console.log("Form render", JSON.parse(JSON.stringify({data, values, errors})))
 
   return {
     fields,
