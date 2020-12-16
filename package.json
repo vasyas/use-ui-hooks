@@ -9,8 +9,10 @@
     "test": "mocha -r ts-node/register tests/**/*.ts"
   },
   "license": "MIT",
+  "dependencies": {
+    "@push-rpc/core": "^1.2.6"
+  },
   "devDependencies": {
-    "@push-rpc/core": "^1.0.24",
     "@types/chai": "^4.2.5",
     "@types/mocha": "^5.2.7",
     "@types/react": "^16.9.13",
