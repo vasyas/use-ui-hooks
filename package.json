@@ -9,6 +9,8 @@
     "test": "mocha -r ts-node/register tests/**/*.ts"
   },
   "license": "MIT",
+  "repository": "https://github.com/vasyas/use-ui-hooks.git",
+  "author": "vasyas <vasyl@stashuk.com>",
   "dependencies": {
     "@push-rpc/core": "^1.2.6"
   },
