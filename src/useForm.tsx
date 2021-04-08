@@ -16,7 +16,7 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
 
       // is it really good, that undefined means "take from initial" ?
       // there is at least one UC it is bad, so it there would be one more - remove
-      if (typeof values[name] != undefined) {
+      if (typeof values[name] != "undefined") {
         d = getConfiguredFieldType(name).valueToData(values[name])
       } else {
         d = initialFieldData[name]
