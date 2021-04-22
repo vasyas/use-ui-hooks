@@ -1,4 +1,9 @@
-Collection of React hooks for building UI, including forms, validation and data fetching
+Collection of React hooks for building UI, including forms, validation and data fetching. 
+Best used with [Push-RPC](https://github.com/vasyas/push-rpc) framework.
+
+## Core concepts
+
+
 
 ## Main components
 

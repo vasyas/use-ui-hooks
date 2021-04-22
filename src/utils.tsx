@@ -10,11 +10,11 @@ export function usePrevious<T>(value: T) {
   return ref.current
 }
 
-export function oneTimeField(accept): Field {
+export function oneTimeField(accept: (value: string) => void, value: string = ""): Field {
   return {
     setFieldElement() {},
     getValue() {
-      return ""
+      return value
     },
     setValue(s) {
       accept(s)
