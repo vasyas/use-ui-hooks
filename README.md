@@ -3,7 +3,29 @@ Best used with [Push-RPC](https://github.com/vasyas/push-rpc) framework.
 
 ## Core concepts
 
+## Typical use cases
 
+### Simple form
+
+### Initial data for the form from topic
+### Initial data for the form from async effect 
+
+### One-shot field
+
+#### Case 1. Generic oneTimeField
+#### Case 2. InlineEdit
+
+### Loading data from server
+
+### Performing some action
+
+#### Case 1. Generic useAction
+#### Case 2. Including form
+
+
+### Extra cases
+
+#### Trim input value after edit
 
 ## Main components
 
