@@ -1,8 +1,10 @@
+/** Convert form data value to a string and back */
 export interface FieldType<T> {
   dataToValue(data: T)
   valueToData(value: string): T
 }
 
+/** Names of pre-defined {@link FieldType}s */
 export type FieldTypeName = keyof typeof fieldTypes & string
 
 const fieldTypes: {[name: string]: FieldType<any>} = {
@@ -27,7 +29,8 @@ const fieldTypes: {[name: string]: FieldType<any>} = {
   },
 }
 
-export function getFieldType(typeName): FieldType<unknown> {
+/** Return FieldType from its name */
+export function getFieldType(typeName: FieldTypeName): FieldType<unknown> {
   const type = fieldTypes[typeName]
 
   if (!type) {

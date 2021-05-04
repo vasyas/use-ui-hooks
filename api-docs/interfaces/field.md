@@ -2,6 +2,10 @@
 
 # Interface: Field
 
+Information about field state
+
+This object is passed into input components
+
 ## Table of contents
 
 ### Methods
@@ -21,7 +25,7 @@
 
 **Returns:** *string*
 
-Defined in: [useForm.tsx:278](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L278)
+Defined in: [useForm.tsx:294](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L294)
 
 ___
 
@@ -31,7 +35,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: [useForm.tsx:274](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L274)
+Defined in: [useForm.tsx:290](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L290)
 
 ___
 
@@ -41,7 +45,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [useForm.tsx:276](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L276)
+Defined in: [useForm.tsx:292](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L292)
 
 ___
 
@@ -51,7 +55,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [useForm.tsx:277](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L277)
+Defined in: [useForm.tsx:293](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L293)
 
 ___
 
@@ -67,7 +71,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [useForm.tsx:273](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L273)
+Defined in: [useForm.tsx:289](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L289)
 
 ___
 
@@ -83,4 +87,4 @@ ___
 
 **Returns:** *any*
 
-Defined in: [useForm.tsx:275](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L275)
+Defined in: [useForm.tsx:291](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L291)

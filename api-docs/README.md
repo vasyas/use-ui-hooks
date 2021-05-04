@@ -58,7 +58,7 @@ Action implementations should be async and accept at most one parameter
 
 **Returns:** *Promise*<void\>
 
-Defined in: [useActions.ts:76](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useActions.ts#L76)
+Defined in: [useActions.ts:76](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useActions.ts#L76)
 
 ___
 
@@ -66,7 +66,9 @@ ___
 
 Ƭ **FieldTypeName**: keyof *typeof* fieldTypes & *string*
 
-Defined in: [fieldTypes.ts:6](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/fieldTypes.ts#L6)
+Names of pre-defined [FieldType](interfaces/fieldtype.md)s
+
+Defined in: [fieldTypes.ts:8](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/fieldTypes.ts#L8)
 
 ___
 
@@ -74,7 +76,7 @@ ___
 
 Ƭ **ValidateMessages**: *typeof* enValidateMessages
 
-Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/validate.ts#L43)
+Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/validate.ts#L43)
 
 ## Functions
 
@@ -90,23 +92,25 @@ Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/cca03e8
 
 **Returns:** *Element*
 
-Defined in: [result.tsx:16](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/result.tsx#L16)
+Defined in: [result.tsx:16](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/result.tsx#L16)
 
 ___
 
 ### getFieldType
 
-▸ **getFieldType**(`typeName`: *any*): [*FieldType*](interfaces/fieldtype.md)<unknown\>
+▸ **getFieldType**(`typeName`: [*FieldTypeName*](README.md#fieldtypename)): [*FieldType*](interfaces/fieldtype.md)<unknown\>
+
+Return FieldType from its name
 
 #### Parameters:
 
 | Name | Type |
 | :------ | :------ |
-| `typeName` | *any* |
+| `typeName` | [*FieldTypeName*](README.md#fieldtypename) |
 
 **Returns:** [*FieldType*](interfaces/fieldtype.md)<unknown\>
 
-Defined in: [fieldTypes.ts:30](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/fieldTypes.ts#L30)
+Defined in: [fieldTypes.ts:33](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/fieldTypes.ts#L33)
 
 ___
 
@@ -123,7 +127,7 @@ ___
 
 **Returns:** [*Field*](interfaces/field.md)
 
-Defined in: [utils.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/utils.tsx#L13)
+Defined in: [utils.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/utils.tsx#L13)
 
 ___
 
@@ -156,7 +160,7 @@ In addition, action functions calls preventDefault for its first parameter, whic
 
 **Returns:** [*Actions*](interfaces/actions.md)
 
-Defined in: [useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useActions.ts#L27)
+Defined in: [useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useActions.ts#L27)
 
 ___
 
@@ -180,7 +184,7 @@ ___
 
 **Returns:** *Topic*<D, P, TD\>
 
-Defined in: [useCachingTopic.ts:4](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useCachingTopic.ts#L4)
+Defined in: [useCachingTopic.ts:4](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useCachingTopic.ts#L4)
 
 ___
 
@@ -228,6 +232,10 @@ There are four predefined [FieldTypeName](README.md#fieldtypename)s. Custom fiel
 
 Input components are implemented in a separate libraries, for example see [@use-ui/bootstrap3](https://github.com/vasyas/use-ui-bootstrap3).
 
+In addition, form creates a set of action, see [useActions](README.md#useactions). Form action behaves in the same way as in useAction, except
+1) Action implementation receives current form data as the first param
+2) Actions are not launched if form is invalid.
+
 #### Type parameters:
 
 | Name | Type | Description |
@@ -242,7 +250,7 @@ Input components are implemented in a separate libraries, for example see [@use-
 
 **Returns:** [*Form*](interfaces/form.md)<Data\>
 
-Defined in: [useForm.tsx:50](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L50)
+Defined in: [useForm.tsx:54](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L54)
 
 ___
 
@@ -264,7 +272,7 @@ ___
 
 **Returns:** T
 
-Defined in: [utils.tsx:5](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/utils.tsx#L5)
+Defined in: [utils.tsx:5](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/utils.tsx#L5)
 
 ___
 
@@ -274,7 +282,7 @@ ___
 
 **Returns:** Result
 
-Defined in: [result.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/result.tsx#L6)
+Defined in: [result.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/result.tsx#L6)
 
 ___
 
@@ -321,4 +329,4 @@ to use inline objects as params.
 | `data` | Data | Loaded data or default value |
 | `loading` | *boolean* | True if loading request is in progress |
 
-Defined in: [useTopic.tsx:30](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useTopic.tsx#L30)
+Defined in: [useTopic.tsx:30](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useTopic.tsx#L30)

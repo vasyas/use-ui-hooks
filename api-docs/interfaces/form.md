@@ -2,6 +2,8 @@
 
 # Interface: Form<Data\>
 
+Form state + form actions (see [Actions](actions.md), @link [useActions](../README.md#useactions))
+
 ## Type parameters
 
 | Name |
@@ -28,7 +30,9 @@
 
 • **data**: Data
 
-Defined in: [useForm.tsx:256](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L256)
+Current data (derived from initial data + overriden in the input fields)
+
+Defined in: [useForm.tsx:263](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L263)
 
 ___
 
@@ -36,7 +40,9 @@ ___
 
 • **error**: *string*
 
-Defined in: [useForm.tsx:259](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L259)
+Form action error
+
+Defined in: [useForm.tsx:268](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L268)
 
 ___
 
@@ -44,7 +50,9 @@ ___
 
 • **fields**: *Partial*<{ [FieldName in string \| number \| symbol]: Field}\>
 
-Defined in: [useForm.tsx:255](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L255)
+Hash of form fields
+
+Defined in: [useForm.tsx:261](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L261)
 
 ___
 
@@ -52,13 +60,17 @@ ___
 
 • **progress**: *boolean*
 
-Defined in: [useForm.tsx:260](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L260)
+True if any of the form actions are in progress now
+
+Defined in: [useForm.tsx:270](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L270)
 
 ## Methods
 
 ### action
 
 ▸ **action**<Params\>(`impl`: *FormActionImpl*<Data, Params\>, `options?`: { `validate`: *boolean*  }): [*ActionFunction*](actionfunction.md)<Params\>
+
+Create form action
 
 #### Type parameters:
 
@@ -76,13 +88,15 @@ Defined in: [useForm.tsx:260](https://github.com/vasyas/use-ui-hooks/blob/cca03e
 
 **Returns:** [*ActionFunction*](actionfunction.md)<Params\>
 
-Defined in: [useForm.tsx:261](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L261)
+Defined in: [useForm.tsx:272](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L272)
 
 ___
 
 ### updateValues
 
 ▸ **updateValues**(`update`: *Partial*<Partial<{ [FieldName in string \| number \| symbol]: string}\>\>): *any*
+
+Programmatically change form field values. Triggers validation for updated fields
 
 #### Parameters:
 
@@ -92,4 +106,4 @@ ___
 
 **Returns:** *any*
 
-Defined in: [useForm.tsx:257](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L257)
+Defined in: [useForm.tsx:265](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L265)

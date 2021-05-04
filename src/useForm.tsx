@@ -44,6 +44,10 @@ import {Constraint, enValidateMessages, message} from "./validate"
  *
  * Input components are implemented in a separate libraries, for example see [@use-ui/bootstrap3](https://github.com/vasyas/use-ui-bootstrap3).
  *
+ * In addition, form creates a set of action, see {@link useActions}. Form action behaves in the same way as in useAction, except
+ * 1) Action implementation receives current form data as the first param
+ * 2) Actions are not launched if form is invalid.
+ *
  * @typeParam Data Type of form's data. Form values can be of any type. Type should be convertable to a string with a FieldType specified via input component.
  * @param initialData  initial data for field values. useForm supports updating it after initial mount, so it can be loaded async
  */
@@ -251,13 +255,20 @@ export function useForm<Data extends Record<string, unknown>>(initialData?: Data
   }
 }
 
+/** Form state + form actions (see {@link Actions}, @link {@link useActions}) */
 export interface Form<Data> {
+  /** Hash of form fields */
   fields: Fields<Data>
+  /** Current data (derived from initial data + overriden in the input fields) */
   data: Data
+  /** Programmatically change form field values. Triggers validation for updated fields */
   updateValues(update: Partial<Values<Data>>)
 
+  /** Form action error */
   error: string
+  /** True if any of the form actions are in progress now */
   progress: boolean
+  /** Create form action */
   action<Params>(
     impl: FormActionImpl<Data, Params>,
     options?: {validate: boolean}
@@ -269,6 +280,11 @@ type Values<Data> = Partial<{[FieldName in keyof Data]: string}>
 type Errors<Data> = Partial<{[FieldName in keyof Data]: string}>
 type FieldElements<Data> = Partial<{[FieldName in keyof Data]: FieldElement}>
 
+/**
+ * Information about field state
+ *
+ * This object is passed into input components
+ */
 export interface Field {
   setFieldElement(fieldElement: FieldElement): void
   getValue(): string
@@ -278,6 +294,7 @@ export interface Field {
   getError(): string
 }
 
+/** Input components register themselves in the form using this adapter */
 export interface FieldElement {
   constraint: Partial<Constraint>
   type?: FieldTypeName | FieldType<unknown>
@@ -285,6 +302,9 @@ export interface FieldElement {
   blur(): void
 }
 
+/**
+ * Form actions implementation should be of this type
+ */
 export type FormActionImpl<Fields, Params = void> = (
   fields: Fields,
   params?: Params

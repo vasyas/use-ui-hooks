@@ -2,6 +2,8 @@
 
 # Interface: FieldType<T\>
 
+Convert form data value to a string and back
+
 ## Type parameters
 
 | Name |
@@ -29,7 +31,7 @@
 
 **Returns:** *any*
 
-Defined in: [fieldTypes.ts:2](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/fieldTypes.ts#L2)
+Defined in: [fieldTypes.ts:3](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/fieldTypes.ts#L3)
 
 ___
 
@@ -45,4 +47,4 @@ ___
 
 **Returns:** T
 
-Defined in: [fieldTypes.ts:3](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/fieldTypes.ts#L3)
+Defined in: [fieldTypes.ts:4](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/fieldTypes.ts#L4)

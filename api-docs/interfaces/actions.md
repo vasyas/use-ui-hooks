@@ -23,7 +23,7 @@ Factory for creating actions and information about last error
 
 Last action error
 
-Defined in: [useActions.ts:68](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useActions.ts#L68)
+Defined in: [useActions.ts:68](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useActions.ts#L68)
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 True if any of the created actions are in progress
 
-Defined in: [useActions.ts:72](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useActions.ts#L72)
+Defined in: [useActions.ts:72](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useActions.ts#L72)
 
 ## Methods
 
@@ -57,4 +57,4 @@ Create action function from implementation
 
 **Returns:** [*ActionFunction*](actionfunction.md)<Params\>
 
-Defined in: [useActions.ts:70](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useActions.ts#L70)
+Defined in: [useActions.ts:70](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useActions.ts#L70)

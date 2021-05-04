@@ -2,6 +2,8 @@
 
 # Interface: FieldElement
 
+Input components register themselves in the form using this adapter
+
 ## Table of contents
 
 ### Properties
@@ -20,7 +22,7 @@
 
 • **constraint**: *Partial*<[*Constraint*](constraint.md)\>
 
-Defined in: [useForm.tsx:282](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L282)
+Defined in: [useForm.tsx:299](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L299)
 
 ___
 
@@ -28,7 +30,7 @@ ___
 
 • `Optional` **type**: *string* \| [*FieldType*](fieldtype.md)<unknown\>
 
-Defined in: [useForm.tsx:283](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L283)
+Defined in: [useForm.tsx:300](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L300)
 
 ## Methods
 
@@ -38,7 +40,7 @@ Defined in: [useForm.tsx:283](https://github.com/vasyas/use-ui-hooks/blob/cca03e
 
 **Returns:** *void*
 
-Defined in: [useForm.tsx:285](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L285)
+Defined in: [useForm.tsx:302](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L302)
 
 ___
 
@@ -48,4 +50,4 @@ ___
 
 **Returns:** *void*
 
-Defined in: [useForm.tsx:284](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L284)
+Defined in: [useForm.tsx:301](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L301)
