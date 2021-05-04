@@ -28,7 +28,7 @@
 
 • **data**: F
 
-Defined in: [useForm.tsx:207](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/useForm.tsx#L207)
+Defined in: [useForm.tsx:207](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L207)
 
 ___
 
@@ -36,7 +36,7 @@ ___
 
 • **error**: *string*
 
-Defined in: [useForm.tsx:210](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/useForm.tsx#L210)
+Defined in: [useForm.tsx:210](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L210)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 • **fields**: *Partial*<{ [P in string \| number \| symbol]: Field}\>
 
-Defined in: [useForm.tsx:206](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/useForm.tsx#L206)
+Defined in: [useForm.tsx:206](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L206)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 • **progress**: *boolean*
 
-Defined in: [useForm.tsx:211](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/useForm.tsx#L211)
+Defined in: [useForm.tsx:211](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L211)
 
 ## Methods
 
@@ -76,7 +76,7 @@ Defined in: [useForm.tsx:211](https://github.com/vasyas/use-ui-hooks/blob/4d6089
 
 **Returns:** *TrackedAction*<P\>
 
-Defined in: [useForm.tsx:212](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/useForm.tsx#L212)
+Defined in: [useForm.tsx:212](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L212)
 
 ___
 
@@ -92,4 +92,4 @@ ___
 
 **Returns:** *any*
 
-Defined in: [useForm.tsx:208](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/useForm.tsx#L208)
+Defined in: [useForm.tsx:208](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L208)

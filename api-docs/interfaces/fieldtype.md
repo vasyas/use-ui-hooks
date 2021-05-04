@@ -29,7 +29,7 @@
 
 **Returns:** *any*
 
-Defined in: [fieldTypes.ts:2](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/fieldTypes.ts#L2)
+Defined in: [fieldTypes.ts:2](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/fieldTypes.ts#L2)
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 **Returns:** T
 
-Defined in: [fieldTypes.ts:3](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/fieldTypes.ts#L3)
+Defined in: [fieldTypes.ts:3](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/fieldTypes.ts#L3)

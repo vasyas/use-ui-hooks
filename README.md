@@ -22,30 +22,9 @@ Best used with [Push-RPC](https://github.com/vasyas/push-rpc) framework.
 #### Case 1. Generic useAction
 #### Case 2. Including form
 
-
 ### Extra cases
 
 #### Trim input value after edit
-
-## Main components
-
-### useTopic
-
-Load data from backend using [push-rpc](https://github.com/vasyas/push-rpc).
-
-```
-const {data} = useTopic(services.client, {
-  pk: session.user.clientPk
-})
-```
-
-In this example `useTopic` will subscribe to topic `services.client` on mount and 
-will unsubscribe from it on unmount (much like useEffect works). 
-
-In addition, `useTopic` will re-subscribe topic on changing topic parameters.
-In example, when `session.user.clientPk` change topic will be resubscribed. 
-
-Before the first load, `data` will be undefined. 
 
 ### useAction
 

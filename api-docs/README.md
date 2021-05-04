@@ -35,7 +35,7 @@
 
 Ƭ **FieldTypeName**: keyof *typeof* fieldTypes
 
-Defined in: [fieldTypes.ts:6](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/fieldTypes.ts#L6)
+Defined in: [fieldTypes.ts:6](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/fieldTypes.ts#L6)
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 Ƭ **ValidateMessages**: *typeof* enValidateMessages
 
-Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/validate.ts#L43)
+Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/validate.ts#L43)
 
 ## Functions
 
@@ -59,7 +59,7 @@ Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/4d60894
 
 **Returns:** *Element*
 
-Defined in: [result.tsx:16](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/result.tsx#L16)
+Defined in: [result.tsx:16](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/result.tsx#L16)
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 **Returns:** [*FieldType*](interfaces/fieldtype.md)<any\>
 
-Defined in: [fieldTypes.ts:30](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/fieldTypes.ts#L30)
+Defined in: [fieldTypes.ts:30](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/fieldTypes.ts#L30)
 
 ___
 
@@ -92,7 +92,7 @@ ___
 
 **Returns:** [*Field*](interfaces/field.md)
 
-Defined in: [utils.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/utils.tsx#L13)
+Defined in: [utils.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/utils.tsx#L13)
 
 ___
 
@@ -102,7 +102,7 @@ ___
 
 **Returns:** Action
 
-Defined in: [useAction.ts:3](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/useAction.ts#L3)
+Defined in: [useAction.ts:3](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useAction.ts#L3)
 
 ___
 
@@ -126,7 +126,7 @@ ___
 
 **Returns:** *Topic*<D, P, TD\>
 
-Defined in: [useCachingTopic.ts:4](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/useCachingTopic.ts#L4)
+Defined in: [useCachingTopic.ts:4](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useCachingTopic.ts#L4)
 
 ___
 
@@ -148,7 +148,7 @@ ___
 
 **Returns:** [*Form*](interfaces/form.md)<F\>
 
-Defined in: [useForm.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/useForm.tsx#L6)
+Defined in: [useForm.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L6)
 
 ___
 
@@ -170,7 +170,7 @@ ___
 
 **Returns:** T
 
-Defined in: [utils.tsx:5](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/utils.tsx#L5)
+Defined in: [utils.tsx:5](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/utils.tsx#L5)
 
 ___
 
@@ -180,37 +180,51 @@ ___
 
 **Returns:** Result
 
-Defined in: [result.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/result.tsx#L6)
+Defined in: [result.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/result.tsx#L6)
 
 ___
 
 ### useTopic
 
-▸ **useTopic**<D, P\>(`topic`: *Topic*<D, P\>, `params`: P, `def?`: D): *object*
+▸ **useTopic**<Data, Params\>(`topic`: *Topic*<Data, Params\>, `params`: Params, `def?`: Data): *object*
 
-Subscribe to a topic with parameters
-If params is falsy, no subscription will be performed. This is usefull to skip subscriptin "parent" data is loaded.
+Load data from backend using [push-rpc](https://github.com/vasyas/push-rpc).
+
+```typescript
+const {data} = useTopic(services.client, {
+  pk: session.user.clientPk
+})
+```
+
+In this example `useTopic` will subscribe to topic `services.client` on mount and
+will unsubscribe from it on unmount (much like useEffect works).
+
+If `params` are falsy, no subscription will be performed. This is useful to skip subscription until "parent" data is loaded.
+
+`useTopic` will re-subscribe topic on changing topic parameters. In example above, when `session.user.clientPk`
+change topic will be resubscribed. When re-subscribing, `useTopic` will convert params to JSON strings, so it is ok
+to use inline objects as params.
 
 #### Type parameters:
 
-| Name |
-| :------ |
-| `D` |
-| `P` |
+| Name | Description |
+| :------ | :------ |
+| `Data` | Data type that topic should return |
+| `Params` | Type of parameters that topic should accept |
 
 #### Parameters:
 
-| Name | Type |
-| :------ | :------ |
-| `topic` | *Topic*<D, P\> |
-| `params` | P |
-| `def?` | D |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `topic` | *Topic*<Data, Params\> | Push-RPC Topic to load data |
+| `params` | Params | params to send to topic |
+| `def?` | Data | default value to use until data is loaded, undefined by default |
 
 **Returns:** *object*
 
-| Name | Type |
-| :------ | :------ |
-| `data` | D |
-| `loading` | *boolean* |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | Data | Loaded data or default value |
+| `loading` | *boolean* | True if loading request is in progress |
 
-Defined in: [useTopic.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/4d60894/src/useTopic.tsx#L13)
+Defined in: [useTopic.tsx:30](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useTopic.tsx#L30)
