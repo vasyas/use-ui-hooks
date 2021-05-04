@@ -1,12 +1,12 @@
 [@use-ui/hooks](../README.md) / Form
 
-# Interface: Form<F\>
+# Interface: Form<Data\>
 
 ## Type parameters
 
 | Name |
 | :------ |
-| `F` |
+| `Data` |
 
 ## Table of contents
 
@@ -26,9 +26,9 @@
 
 ### data
 
-• **data**: F
+• **data**: Data
 
-Defined in: [useForm.tsx:210](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L210)
+Defined in: [useForm.tsx:256](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L256)
 
 ___
 
@@ -36,15 +36,15 @@ ___
 
 • **error**: *string*
 
-Defined in: [useForm.tsx:213](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L213)
+Defined in: [useForm.tsx:259](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L259)
 
 ___
 
 ### fields
 
-• **fields**: *Partial*<{ [P in string \| number \| symbol]: Field}\>
+• **fields**: *Partial*<{ [FieldName in string \| number \| symbol]: Field}\>
 
-Defined in: [useForm.tsx:209](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L209)
+Defined in: [useForm.tsx:255](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L255)
 
 ___
 
@@ -52,44 +52,44 @@ ___
 
 • **progress**: *boolean*
 
-Defined in: [useForm.tsx:214](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L214)
+Defined in: [useForm.tsx:260](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L260)
 
 ## Methods
 
 ### action
 
-▸ **action**<P\>(`impl`: *FormActionImpl*<F, P\>, `options?`: { `validate`: *boolean*  }): [*ActionFunction*](actionfunction.md)<P\>
+▸ **action**<Params\>(`impl`: *FormActionImpl*<Data, Params\>, `options?`: { `validate`: *boolean*  }): [*ActionFunction*](actionfunction.md)<Params\>
 
 #### Type parameters:
 
 | Name |
 | :------ |
-| `P` |
+| `Params` |
 
 #### Parameters:
 
 | Name | Type |
 | :------ | :------ |
-| `impl` | *FormActionImpl*<F, P\> |
+| `impl` | *FormActionImpl*<Data, Params\> |
 | `options?` | *object* |
 | `options.validate` | *boolean* |
 
-**Returns:** [*ActionFunction*](actionfunction.md)<P\>
+**Returns:** [*ActionFunction*](actionfunction.md)<Params\>
 
-Defined in: [useForm.tsx:215](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L215)
+Defined in: [useForm.tsx:261](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L261)
 
 ___
 
 ### updateValues
 
-▸ **updateValues**(`update`: *Partial*<Partial<{ [P in string \| number \| symbol]: string}\>\>): *any*
+▸ **updateValues**(`update`: *Partial*<Partial<{ [FieldName in string \| number \| symbol]: string}\>\>): *any*
 
 #### Parameters:
 
 | Name | Type |
 | :------ | :------ |
-| `update` | *Partial*<Partial<{ [P in string \| number \| symbol]: string}\>\> |
+| `update` | *Partial*<Partial<{ [FieldName in string \| number \| symbol]: string}\>\> |
 
 **Returns:** *any*
 
-Defined in: [useForm.tsx:211](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L211)
+Defined in: [useForm.tsx:257](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L257)

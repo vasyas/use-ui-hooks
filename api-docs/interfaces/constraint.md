@@ -17,7 +17,7 @@
 
 • **integer**: *boolean*
 
-Defined in: [validate.ts:3](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/validate.ts#L3)
+Defined in: [validate.ts:3](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/validate.ts#L3)
 
 ___
 
@@ -25,7 +25,7 @@ ___
 
 • **nonNegative**: *boolean*
 
-Defined in: [validate.ts:5](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/validate.ts#L5)
+Defined in: [validate.ts:5](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/validate.ts#L5)
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **number**: *boolean*
 
-Defined in: [validate.ts:4](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/validate.ts#L4)
+Defined in: [validate.ts:4](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/validate.ts#L4)
 
 ___
 
@@ -41,4 +41,4 @@ ___
 
 • **required**: *boolean*
 
-Defined in: [validate.ts:2](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/validate.ts#L2)
+Defined in: [validate.ts:2](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/validate.ts#L2)

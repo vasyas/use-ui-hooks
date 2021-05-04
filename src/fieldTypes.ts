@@ -3,7 +3,7 @@ export interface FieldType<T> {
   valueToData(value: string): T
 }
 
-export type FieldTypeName = keyof typeof fieldTypes
+export type FieldTypeName = keyof typeof fieldTypes & string
 
 const fieldTypes: {[name: string]: FieldType<any>} = {
   string: {
@@ -27,7 +27,7 @@ const fieldTypes: {[name: string]: FieldType<any>} = {
   },
 }
 
-export function getFieldType(typeName): FieldType<any> {
+export function getFieldType(typeName): FieldType<unknown> {
   const type = fieldTypes[typeName]
 
   if (!type) {

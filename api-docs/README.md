@@ -58,15 +58,15 @@ Action implementations should be async and accept at most one parameter
 
 **Returns:** *Promise*<void\>
 
-Defined in: [useActions.ts:76](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useActions.ts#L76)
+Defined in: [useActions.ts:76](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useActions.ts#L76)
 
 ___
 
 ### FieldTypeName
 
-Ƭ **FieldTypeName**: keyof *typeof* fieldTypes
+Ƭ **FieldTypeName**: keyof *typeof* fieldTypes & *string*
 
-Defined in: [fieldTypes.ts:6](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/fieldTypes.ts#L6)
+Defined in: [fieldTypes.ts:6](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/fieldTypes.ts#L6)
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 Ƭ **ValidateMessages**: *typeof* enValidateMessages
 
-Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/validate.ts#L43)
+Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/validate.ts#L43)
 
 ## Functions
 
@@ -90,13 +90,13 @@ Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/6d6625b
 
 **Returns:** *Element*
 
-Defined in: [result.tsx:16](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/result.tsx#L16)
+Defined in: [result.tsx:16](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/result.tsx#L16)
 
 ___
 
 ### getFieldType
 
-▸ **getFieldType**(`typeName`: *any*): [*FieldType*](interfaces/fieldtype.md)<any\>
+▸ **getFieldType**(`typeName`: *any*): [*FieldType*](interfaces/fieldtype.md)<unknown\>
 
 #### Parameters:
 
@@ -104,9 +104,9 @@ ___
 | :------ | :------ |
 | `typeName` | *any* |
 
-**Returns:** [*FieldType*](interfaces/fieldtype.md)<any\>
+**Returns:** [*FieldType*](interfaces/fieldtype.md)<unknown\>
 
-Defined in: [fieldTypes.ts:30](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/fieldTypes.ts#L30)
+Defined in: [fieldTypes.ts:30](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/fieldTypes.ts#L30)
 
 ___
 
@@ -123,7 +123,7 @@ ___
 
 **Returns:** [*Field*](interfaces/field.md)
 
-Defined in: [utils.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/utils.tsx#L13)
+Defined in: [utils.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/utils.tsx#L13)
 
 ___
 
@@ -156,7 +156,7 @@ In addition, action functions calls preventDefault for its first parameter, whic
 
 **Returns:** [*Actions*](interfaces/actions.md)
 
-Defined in: [useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useActions.ts#L27)
+Defined in: [useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useActions.ts#L27)
 
 ___
 
@@ -180,29 +180,69 @@ ___
 
 **Returns:** *Topic*<D, P, TD\>
 
-Defined in: [useCachingTopic.ts:4](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useCachingTopic.ts#L4)
+Defined in: [useCachingTopic.ts:4](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useCachingTopic.ts#L4)
 
 ___
 
 ### useForm
 
-▸ **useForm**<F\>(`initialFieldData?`: F): [*Form*](interfaces/form.md)<F\>
+▸ **useForm**<Data\>(`initialData?`: Data): [*Form*](interfaces/form.md)<Data\>
+
+Store various state related to form processing.
+
+Use it in a form component that can edit data in one or more input fields:
+
+```typescript
+import {useForm} from "@use-ui/hooks"
+import {ActionResult, Input} from "@use-ui/bootstrap3"
+
+interface LoginData {
+  login: string
+  password: string
+}
+
+const {fields, progress, action, error} = useForm<LoginData>()
+
+const login = action(async ({login, password}: LoginData) => {
+  await services.auth.login({login, password})
+})
+
+return (
+  <div>
+    <Input label="Login" field={fields.login} required autoFocus disabled={progress} />
+    <Input label="Password" field={fields.password} required autoFocus disabled={progress} />
+
+    <Button onClick={login} progress={progress}>
+      Sign In
+    </Button>
+  </div>
+)
+```
+
+Form consist of multiple [Field](interfaces/field.md)s. Each field has value and validation error. Each field is linked to a
+[FieldElement](interfaces/fieldelement.md). [FieldElement](interfaces/fieldelement.md) is implemented by input component, and contains information about field's [FieldType](interfaces/fieldtype.md)
+and validation constraints [Constraint](interfaces/constraint.md).
+
+Field value is a string. Form data can be of different types, and field type define how to convert form data to a field value and back.
+There are four predefined [FieldTypeName](README.md#fieldtypename)s. Custom field types can also be used.
+
+Input components are implemented in a separate libraries, for example see [@use-ui/bootstrap3](https://github.com/vasyas/use-ui-bootstrap3).
 
 #### Type parameters:
 
-| Name |
-| :------ |
-| `F` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `Data` | *Record*<string, unknown\> | Type of form's data. Form values can be of any type. Type should be convertable to a string with a FieldType specified via input component. |
 
 #### Parameters:
 
-| Name | Type |
-| :------ | :------ |
-| `initialFieldData?` | F |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `initialData?` | Data | initial data for field values. useForm supports updating it after initial mount, so it can be loaded async |
 
-**Returns:** [*Form*](interfaces/form.md)<F\>
+**Returns:** [*Form*](interfaces/form.md)<Data\>
 
-Defined in: [useForm.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L6)
+Defined in: [useForm.tsx:50](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L50)
 
 ___
 
@@ -224,7 +264,7 @@ ___
 
 **Returns:** T
 
-Defined in: [utils.tsx:5](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/utils.tsx#L5)
+Defined in: [utils.tsx:5](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/utils.tsx#L5)
 
 ___
 
@@ -234,7 +274,7 @@ ___
 
 **Returns:** Result
 
-Defined in: [result.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/result.tsx#L6)
+Defined in: [result.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/result.tsx#L6)
 
 ___
 
@@ -281,4 +321,4 @@ to use inline objects as params.
 | `data` | Data | Loaded data or default value |
 | `loading` | *boolean* | True if loading request is in progress |
 
-Defined in: [useTopic.tsx:30](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useTopic.tsx#L30)
+Defined in: [useTopic.tsx:30](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useTopic.tsx#L30)

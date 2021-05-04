@@ -1,59 +1,105 @@
-import {useRef, useState, useEffect} from "react"
+import {useRef, useState} from "react"
 import {FieldType, FieldTypeName, getFieldType} from "./fieldTypes"
 import {ActionFunction, useActions} from "./useActions"
 import {Constraint, enValidateMessages, message} from "./validate"
 
-export function useForm<F>(initialFieldData?: F): Form<F> {
-  const [errors, setErrors] = useState<Errors<F>>({})
-  const [values, setValues] = useState<Values<F>>({})
-  const fieldElements = useRef<FieldElements<F>>({})
+/**
+ * Store various state related to form processing.
+ *
+ * Use it in a form component that can edit data in one or more input fields:
+ *
+ * ```typescript
+ * import {useForm} from "@use-ui/hooks"
+ * import {ActionResult, Input} from "@use-ui/bootstrap3"
+ *
+ * interface LoginData {
+ *   login: string
+ *   password: string
+ * }
+ *
+ * const {fields, progress, action, error} = useForm<LoginData>()
+ *
+ * const login = action(async ({login, password}: LoginData) => {
+ *   await services.auth.login({login, password})
+ * })
+
+ * return (
+ *   <div>
+ *     <Input label="Login" field={fields.login} required autoFocus disabled={progress} />
+ *     <Input label="Password" field={fields.password} required autoFocus disabled={progress} />
+
+ *     <Button onClick={login} progress={progress}>
+ *       Sign In
+ *     </Button>
+ *   </div>
+ * )
+ * ```
+ *
+ * Form consist of multiple {@link Field}s. Each field has value and validation error. Each field is linked to a
+ * {@link FieldElement}. {@link FieldElement} is implemented by input component, and contains information about field's {@link FieldType}
+ * and validation constraints {@link Constraint}.
+ *
+ * Field value is a string. Form data can be of different types, and field type define how to convert form data to a field value and back.
+ * There are four predefined {@link FieldTypeName}s. Custom field types can also be used.
+ *
+ * Input components are implemented in a separate libraries, for example see [@use-ui/bootstrap3](https://github.com/vasyas/use-ui-bootstrap3).
+ *
+ * @typeParam Data Type of form's data. Form values can be of any type. Type should be convertable to a string with a FieldType specified via input component.
+ * @param initialData  initial data for field values. useForm supports updating it after initial mount, so it can be loaded async
+ */
+export function useForm<Data extends Record<string, unknown>>(initialData?: Data): Form<Data> {
+  type FieldName = keyof Data
+
+  const [errors, setErrors] = useState<Errors<Data>>({})
+  const [values, setValues] = useState<Values<Data>>({})
+  const fieldElements = useRef<FieldElements<Data>>({})
 
   const action = useActions()
 
-  function getActionFields(): F {
-    return Object.keys(fieldElements.current).reduce((r, name) => {
+  function getActionData(): Data {
+    return (Object.keys(fieldElements.current) as Array<FieldName>).reduce((r, name) => {
       let d
 
       if (typeof values[name] != "undefined") {
         d = getConfiguredFieldType(name).valueToData(values[name])
       } else {
-        d = initialFieldData[name]
+        d = initialData[name]
       }
 
       r[name] = d
       return r
-    }, {} as F)
+    }, {} as Data)
   }
 
-  function formAction<P>(
-    impl: FormActionImpl<F, P>,
+  function formAction<Params>(
+    impl: FormActionImpl<Data, Params>,
     options = {validate: true}
-  ): ActionFunction<P> {
-    return action.action<P>(async (p) => {
+  ): ActionFunction<Params> {
+    return action.action<Params>(async (p) => {
       if (options.validate && revalidate()) {
         return
       }
 
-      await impl(getActionFields(), p)
+      await impl(getActionData(), p)
     })
   }
 
-  function getFieldValue(name, currentValues = values) {
+  function getFieldValue(name: FieldName, currentValues = values) {
     if (currentValues[name] !== undefined) return currentValues[name]
 
-    if (initialFieldData) {
-      return getConfiguredFieldType(name).dataToValue(initialFieldData[name])
+    if (initialData) {
+      return getConfiguredFieldType(name).dataToValue(initialData[name])
     }
 
     return ""
   }
 
-  function getConfiguredFieldType(name): FieldType<any> {
-    const type = fieldElements.current[name]?.type ?? "string"
+  function getConfiguredFieldType(fieldName: FieldName): FieldType<unknown> {
+    const type = fieldElements.current[fieldName]?.type ?? "string"
     return typeof type == "string" ? getFieldType(type) : type
   }
 
-  function createField(name): Field {
+  function createField(name: keyof Data): Field {
     return {
       setFieldElement(fieldElement: FieldElement) {
         fieldElements.current[name] = fieldElement
@@ -139,11 +185,11 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
     )
   }
 
-  function createData(): F {
-    const r = {...initialFieldData}
+  function createData(): Data {
+    const r = {...initialData}
 
-    for (const name of Object.keys(values)) {
-      r[name] = getConfiguredFieldType(name).valueToData(values[name])
+    for (const name of Object.keys(values) as FieldName[]) {
+      r[name] = getConfiguredFieldType(name).valueToData(values[name]) as any
     }
 
     return r
@@ -167,7 +213,7 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
     return focused
   }
 
-  function updateValues(update: Partial<Values<F>>) {
+  function updateValues(update: Partial<Values<Data>>) {
     const newValues = {
       ...values,
       ...update,
@@ -205,20 +251,23 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
   }
 }
 
-export interface Form<F> {
-  fields: Fields<F>
-  data: F
-  updateValues(update: Partial<Values<F>>)
+export interface Form<Data> {
+  fields: Fields<Data>
+  data: Data
+  updateValues(update: Partial<Values<Data>>)
 
   error: string
   progress: boolean
-  action<P>(impl: FormActionImpl<F, P>, options?: {validate: boolean}): ActionFunction<P>
+  action<Params>(
+    impl: FormActionImpl<Data, Params>,
+    options?: {validate: boolean}
+  ): ActionFunction<Params>
 }
 
-type Values<F> = Partial<{[P in keyof F]: string}>
-type Errors<F> = Partial<{[P in keyof F]: string}>
-type Fields<F> = Partial<{[P in keyof F]: Field}>
-type FieldElements<F> = Partial<{[P in keyof F]: FieldElement}>
+type Fields<Data> = Partial<{[FieldName in keyof Data]: Field}>
+type Values<Data> = Partial<{[FieldName in keyof Data]: string}>
+type Errors<Data> = Partial<{[FieldName in keyof Data]: string}>
+type FieldElements<Data> = Partial<{[FieldName in keyof Data]: FieldElement}>
 
 export interface Field {
   setFieldElement(fieldElement: FieldElement): void
@@ -236,7 +285,10 @@ export interface FieldElement {
   blur(): void
 }
 
-export type FormActionImpl<F, P = void> = (fields: F, p?: P) => Promise<void>
+export type FormActionImpl<Fields, Params = void> = (
+  fields: Fields,
+  params?: Params
+) => Promise<void>
 
 // To disable validation on special occasions (ie selecting item on custom selects)
 let disableBlurValidation = false

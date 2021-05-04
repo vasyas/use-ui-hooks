@@ -21,7 +21,7 @@
 
 **Returns:** *string*
 
-Defined in: [useForm.tsx:229](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L229)
+Defined in: [useForm.tsx:278](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L278)
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: [useForm.tsx:225](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L225)
+Defined in: [useForm.tsx:274](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L274)
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [useForm.tsx:227](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L227)
+Defined in: [useForm.tsx:276](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L276)
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [useForm.tsx:228](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L228)
+Defined in: [useForm.tsx:277](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L277)
 
 ___
 
@@ -67,7 +67,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [useForm.tsx:224](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L224)
+Defined in: [useForm.tsx:273](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L273)
 
 ___
 
@@ -83,4 +83,4 @@ ___
 
 **Returns:** *any*
 
-Defined in: [useForm.tsx:226](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L226)
+Defined in: [useForm.tsx:275](https://github.com/vasyas/use-ui-hooks/blob/cca03e8/src/useForm.tsx#L275)
