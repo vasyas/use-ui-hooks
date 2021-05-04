@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@push-rpc/core@^1.2.9":
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/@push-rpc/core/-/core-1.2.9.tgz#bba413b22ed9dedb915a5b4dd9ee345f44fa00f1"
+  integrity sha512-z1SsRu+NRG1GNXsEGMxoMzyH9WFWLIgoMBwa3phFh3i0CatFFM/+HMNHr8cw6S6oH3TVNUzG2VWgUln6Sz5gpA==
+  dependencies:
+    uuid-js "^0.7.5"
+
 "@types/chai@^4.2.17":
   version "4.2.17"
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.2.17.tgz#85f9f0610f514b22a94125d441f73eef65bde5cc"
@@ -814,6 +821,11 @@ universalify@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-2.0.0.tgz#75a4984efedc4b08975c5aeb73f530d02df25717"
   integrity sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==
+
+uuid-js@^0.7.5:
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/uuid-js/-/uuid-js-0.7.5.tgz#6c886d02a53d2d40dcf25d91a170b4a7b25b94d0"
+  integrity sha1-bIhtAqU9LUDc8l2RoXC0p7JblNA=
 
 vscode-textmate@^5.2.0:
   version "5.4.0"

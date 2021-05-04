@@ -7,12 +7,13 @@
     "prepublishOnly": "tsc",
     "build": "tsc",
     "test": "mocha -r ts-node/register tests/**/*.ts",
-    "doc": "typedoc --out api-docs ./src/index.ts"
+    "doc": "typedoc --out api-docs --readme none ./src/index.ts"
   },
   "license": "MIT",
   "repository": "https://github.com/vasyas/use-ui-hooks.git",
   "author": "vasyas <vasyl@stashuk.com>",
   "devDependencies": {
+    "@push-rpc/core": "^1.2.9",
     "@types/chai": "^4.2.17",
     "@types/mocha": "^8.2.2",
     "@types/react": "^17.0.4",
