@@ -6,6 +6,8 @@
 
 ### Interfaces
 
+- [ActionFunction](interfaces/actionfunction.md)
+- [Actions](interfaces/actions.md)
 - [Constraint](interfaces/constraint.md)
 - [Field](interfaces/field.md)
 - [FieldElement](interfaces/fieldelement.md)
@@ -14,6 +16,7 @@
 
 ### Type aliases
 
+- [ActionImpl](README.md#actionimpl)
 - [FieldTypeName](README.md#fieldtypename)
 - [ValidateMessages](README.md#validatemessages)
 
@@ -22,7 +25,7 @@
 - [ResultContext](README.md#resultcontext)
 - [getFieldType](README.md#getfieldtype)
 - [oneTimeField](README.md#onetimefield)
-- [useAction](README.md#useaction)
+- [useActions](README.md#useactions)
 - [useCachingTopic](README.md#usecachingtopic)
 - [useForm](README.md#useform)
 - [usePrevious](README.md#useprevious)
@@ -31,11 +34,39 @@
 
 ## Type aliases
 
+### ActionImpl
+
+Ƭ **ActionImpl**<Params\>: (`p?`: Params) => *Promise*<void\>
+
+Action implementations should be async and accept at most one parameter
+
+#### Type parameters:
+
+| Name |
+| :------ |
+| `Params` |
+
+#### Type declaration:
+
+▸ (`p?`: Params): *Promise*<void\>
+
+#### Parameters:
+
+| Name | Type |
+| :------ | :------ |
+| `p?` | Params |
+
+**Returns:** *Promise*<void\>
+
+Defined in: [useActions.ts:76](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useActions.ts#L76)
+
+___
+
 ### FieldTypeName
 
 Ƭ **FieldTypeName**: keyof *typeof* fieldTypes
 
-Defined in: [fieldTypes.ts:6](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/fieldTypes.ts#L6)
+Defined in: [fieldTypes.ts:6](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/fieldTypes.ts#L6)
 
 ___
 
@@ -43,7 +74,7 @@ ___
 
 Ƭ **ValidateMessages**: *typeof* enValidateMessages
 
-Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/validate.ts#L43)
+Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/validate.ts#L43)
 
 ## Functions
 
@@ -59,7 +90,7 @@ Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/b88f130
 
 **Returns:** *Element*
 
-Defined in: [result.tsx:16](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/result.tsx#L16)
+Defined in: [result.tsx:16](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/result.tsx#L16)
 
 ___
 
@@ -75,7 +106,7 @@ ___
 
 **Returns:** [*FieldType*](interfaces/fieldtype.md)<any\>
 
-Defined in: [fieldTypes.ts:30](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/fieldTypes.ts#L30)
+Defined in: [fieldTypes.ts:30](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/fieldTypes.ts#L30)
 
 ___
 
@@ -92,17 +123,40 @@ ___
 
 **Returns:** [*Field*](interfaces/field.md)
 
-Defined in: [utils.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/utils.tsx#L13)
+Defined in: [utils.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/utils.tsx#L13)
 
 ___
 
-### useAction
+### useActions
 
-▸ **useAction**(): Action
+▸ **useActions**(): [*Actions*](interfaces/actions.md)
 
-**Returns:** Action
+Hook that wraps async functions invocation (ie remote method) in try/catch/finally,
+maintaining `progress` and `error` state.
 
-Defined in: [useAction.ts:3](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useAction.ts#L3)
+```typescript
+const {error, action} = useActions()
+
+const create = action(async () => {
+  await service.user.create()
+})
+
+return (
+  <div>
+    {error && <div>{error}</div>}
+    <button onClick={create} disabled={create.progress}>Create</button>
+  </div>
+)
+```
+
+In addition, action functions calls preventDefault for its first parameter, which makes it handy to use in `a` elements:
+```
+<a href="#" onClick={create}>Create</a>
+```
+
+**Returns:** [*Actions*](interfaces/actions.md)
+
+Defined in: [useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useActions.ts#L27)
 
 ___
 
@@ -126,7 +180,7 @@ ___
 
 **Returns:** *Topic*<D, P, TD\>
 
-Defined in: [useCachingTopic.ts:4](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useCachingTopic.ts#L4)
+Defined in: [useCachingTopic.ts:4](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useCachingTopic.ts#L4)
 
 ___
 
@@ -148,7 +202,7 @@ ___
 
 **Returns:** [*Form*](interfaces/form.md)<F\>
 
-Defined in: [useForm.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L6)
+Defined in: [useForm.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L6)
 
 ___
 
@@ -170,7 +224,7 @@ ___
 
 **Returns:** T
 
-Defined in: [utils.tsx:5](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/utils.tsx#L5)
+Defined in: [utils.tsx:5](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/utils.tsx#L5)
 
 ___
 
@@ -180,7 +234,7 @@ ___
 
 **Returns:** Result
 
-Defined in: [result.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/result.tsx#L6)
+Defined in: [result.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/result.tsx#L6)
 
 ___
 
@@ -188,7 +242,7 @@ ___
 
 ▸ **useTopic**<Data, Params\>(`topic`: *Topic*<Data, Params\>, `params`: Params, `def?`: Data): *object*
 
-Load data from backend using [push-rpc](https://github.com/vasyas/push-rpc).
+Async load data from backend using [push-rpc](https://github.com/vasyas/push-rpc).
 
 ```typescript
 const {data} = useTopic(services.client, {
@@ -227,4 +281,4 @@ to use inline objects as params.
 | `data` | Data | Loaded data or default value |
 | `loading` | *boolean* | True if loading request is in progress |
 
-Defined in: [useTopic.tsx:30](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useTopic.tsx#L30)
+Defined in: [useTopic.tsx:30](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useTopic.tsx#L30)

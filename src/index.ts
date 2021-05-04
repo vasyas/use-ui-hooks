@@ -1,4 +1,4 @@
-export {useAction} from "./useAction"
+export {useActions, ActionFunction, Actions, ActionImpl} from "./useActions"
 export {ResultContext, useResult} from "./result"
 export {useTopic} from "./useTopic"
 export {useForm, Field, FieldElement, Form} from "./useForm"

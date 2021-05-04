@@ -28,7 +28,7 @@
 
 • **data**: F
 
-Defined in: [useForm.tsx:207](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L207)
+Defined in: [useForm.tsx:210](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L210)
 
 ___
 
@@ -36,7 +36,7 @@ ___
 
 • **error**: *string*
 
-Defined in: [useForm.tsx:210](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L210)
+Defined in: [useForm.tsx:213](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L213)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 • **fields**: *Partial*<{ [P in string \| number \| symbol]: Field}\>
 
-Defined in: [useForm.tsx:206](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L206)
+Defined in: [useForm.tsx:209](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L209)
 
 ___
 
@@ -52,13 +52,13 @@ ___
 
 • **progress**: *boolean*
 
-Defined in: [useForm.tsx:211](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L211)
+Defined in: [useForm.tsx:214](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L214)
 
 ## Methods
 
 ### action
 
-▸ **action**<P\>(`impl`: *FormActionImpl*<F, P\>, `options?`: { `validate`: *boolean*  }): *TrackedAction*<P\>
+▸ **action**<P\>(`impl`: *FormActionImpl*<F, P\>, `options?`: { `validate`: *boolean*  }): [*ActionFunction*](actionfunction.md)<P\>
 
 #### Type parameters:
 
@@ -74,9 +74,9 @@ Defined in: [useForm.tsx:211](https://github.com/vasyas/use-ui-hooks/blob/b88f13
 | `options?` | *object* |
 | `options.validate` | *boolean* |
 
-**Returns:** *TrackedAction*<P\>
+**Returns:** [*ActionFunction*](actionfunction.md)<P\>
 
-Defined in: [useForm.tsx:212](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L212)
+Defined in: [useForm.tsx:215](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L215)
 
 ___
 
@@ -92,4 +92,4 @@ ___
 
 **Returns:** *any*
 
-Defined in: [useForm.tsx:208](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L208)
+Defined in: [useForm.tsx:211](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L211)

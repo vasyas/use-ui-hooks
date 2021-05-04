@@ -1,7 +1,11 @@
 Collection of React hooks for building UI, including forms, validation and data fetching. 
 Best used with [Push-RPC](https://github.com/vasyas/push-rpc) framework.
 
-## Core concepts
+## Main hooks
+
+[useTopic](./api-docs/README.md#usetopic) - Async load data from backend
+
+[useActions](./api-docs/README.md#useactions) - Create async actions, with error handling & progress tracking 
 
 ## Typical use cases
 
@@ -25,31 +29,6 @@ Best used with [Push-RPC](https://github.com/vasyas/push-rpc) framework.
 ### Extra cases
 
 #### Trim input value after edit
-
-### useAction
-
-`useAction` wraps async function invocation (ie remote method) in try/catch/finally, 
-maintaining `progress` and `error` state.
-
-```
-const {error, progress, action} = useAction()
-
-const create = action(async () => {
-  await service.user.create()
-})
-
-return (
-    <div>
-        {error && <div>{error}</div>}
-        <button onClick={create} disabled={progress}>Create</button>
-    </div>
-)
-```
-
-In addition, action calls preventDefault for its first parameter, which makes it handy to use in `a` elements:
-```
-<a href="#" onClick={create}>Create</a>
-```
 
 ### useForm
 

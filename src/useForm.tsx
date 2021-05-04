@@ -1,6 +1,6 @@
 import {useRef, useState, useEffect} from "react"
 import {FieldType, FieldTypeName, getFieldType} from "./fieldTypes"
-import {TrackedAction, useAction} from "./useAction"
+import {ActionFunction, useActions} from "./useActions"
 import {Constraint, enValidateMessages, message} from "./validate"
 
 export function useForm<F>(initialFieldData?: F): Form<F> {
@@ -8,7 +8,7 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
   const [values, setValues] = useState<Values<F>>({})
   const fieldElements = useRef<FieldElements<F>>({})
 
-  const action = useAction()
+  const action = useActions()
 
   function getActionFields(): F {
     return Object.keys(fieldElements.current).reduce((r, name) => {
@@ -25,8 +25,11 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
     }, {} as F)
   }
 
-  function formAction<P>(impl: FormActionImpl<F, P>, options = {validate: true}): TrackedAction<P> {
-    return action.action<P>(async p => {
+  function formAction<P>(
+    impl: FormActionImpl<F, P>,
+    options = {validate: true}
+  ): ActionFunction<P> {
+    return action.action<P>(async (p) => {
       if (options.validate && revalidate()) {
         return
       }
@@ -151,7 +154,7 @@ export function useForm<F>(initialFieldData?: F): Form<F> {
 
     let focused = false
 
-    Object.keys(fieldElements.current).forEach(name => {
+    Object.keys(fieldElements.current).forEach((name) => {
       errors[name] = validate(name)
 
       if (!focused && errors[name]) {
@@ -209,7 +212,7 @@ export interface Form<F> {
 
   error: string
   progress: boolean
-  action<P>(impl: FormActionImpl<F, P>, options?: {validate: boolean}): TrackedAction<P>
+  action<P>(impl: FormActionImpl<F, P>, options?: {validate: boolean}): ActionFunction<P>
 }
 
 type Values<F> = Partial<{[P in keyof F]: string}>

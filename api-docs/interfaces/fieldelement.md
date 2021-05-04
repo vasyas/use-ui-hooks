@@ -20,7 +20,7 @@
 
 • **constraint**: *Partial*<[*Constraint*](constraint.md)\>
 
-Defined in: [useForm.tsx:230](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L230)
+Defined in: [useForm.tsx:233](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L233)
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 • `Optional` **type**: *string* \| *number* \| [*FieldType*](fieldtype.md)<unknown\>
 
-Defined in: [useForm.tsx:231](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L231)
+Defined in: [useForm.tsx:234](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L234)
 
 ## Methods
 
@@ -38,7 +38,7 @@ Defined in: [useForm.tsx:231](https://github.com/vasyas/use-ui-hooks/blob/b88f13
 
 **Returns:** *void*
 
-Defined in: [useForm.tsx:233](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L233)
+Defined in: [useForm.tsx:236](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L236)
 
 ___
 
@@ -48,4 +48,4 @@ ___
 
 **Returns:** *void*
 
-Defined in: [useForm.tsx:232](https://github.com/vasyas/use-ui-hooks/blob/b88f130/src/useForm.tsx#L232)
+Defined in: [useForm.tsx:235](https://github.com/vasyas/use-ui-hooks/blob/6d6625b/src/useForm.tsx#L235)

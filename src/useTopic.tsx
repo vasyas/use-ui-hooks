@@ -3,7 +3,7 @@ import * as React from "react"
 import {useCallback, useEffect, useState} from "react"
 
 /**
- * Load data from backend using [push-rpc](https://github.com/vasyas/push-rpc).
+ * Async load data from backend using [push-rpc](https://github.com/vasyas/push-rpc).
  *
  * ```typescript
  * const {data} = useTopic(services.client, {
