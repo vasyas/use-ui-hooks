@@ -58,7 +58,7 @@ Action implementations should be async and accept at most one parameter
 
 **Returns:** *Promise*<void\>
 
-Defined in: [useActions.ts:76](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useActions.ts#L76)
+Defined in: [useActions.ts:76](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useActions.ts#L76)
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 Names of pre-defined [FieldType](interfaces/fieldtype.md)s
 
-Defined in: [fieldTypes.ts:8](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/fieldTypes.ts#L8)
+Defined in: [fieldTypes.ts:8](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/fieldTypes.ts#L8)
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 Ƭ **ValidateMessages**: *typeof* enValidateMessages
 
-Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/validate.ts#L43)
+Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/validate.ts#L43)
 
 ## Functions
 
@@ -92,7 +92,7 @@ Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/246e5b6
 
 **Returns:** *Element*
 
-Defined in: [result.tsx:16](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/result.tsx#L16)
+Defined in: [result.tsx:16](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/result.tsx#L16)
 
 ___
 
@@ -110,7 +110,7 @@ Return FieldType from its name
 
 **Returns:** [*FieldType*](interfaces/fieldtype.md)<unknown\>
 
-Defined in: [fieldTypes.ts:33](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/fieldTypes.ts#L33)
+Defined in: [fieldTypes.ts:33](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/fieldTypes.ts#L33)
 
 ___
 
@@ -118,16 +118,30 @@ ___
 
 ▸ **oneTimeField**(`accept`: (`value`: *string*) => *void*, `value?`: *string*): [*Field*](interfaces/field.md)
 
+Create one-time field to be used with input components instead of `useForm`.
+Typical use case - inline edit:
+```
+<span>Number of rows</span>
+<Select
+  field={oneTimeField(
+      (v) => props.setPageRequest({...props.pageRequest, size: +v}),
+      "" + props.pageRequest.size
+  )}
+  options={["1", "10", "20", "100", "200", "500"]}
+  required
+/>
+```
+
 #### Parameters:
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `accept` | (`value`: *string*) => *void* | - |
-| `value` | *string* | "" |
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `accept` | (`value`: *string*) => *void* | - | callback to called when value changes |
+| `value` | *string* | "" | current value |
 
 **Returns:** [*Field*](interfaces/field.md)
 
-Defined in: [utils.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/utils.tsx#L13)
+Defined in: [utils.tsx:32](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/utils.tsx#L32)
 
 ___
 
@@ -160,31 +174,43 @@ In addition, action functions calls preventDefault for its first parameter, whic
 
 **Returns:** [*Actions*](interfaces/actions.md)
 
-Defined in: [useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useActions.ts#L27)
+Defined in: [useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useActions.ts#L27)
 
 ___
 
 ### useCachingTopic
 
-▸ **useCachingTopic**<D, P, TD\>(`original`: *Topic*<D, P, TD\>): *Topic*<D, P, TD\>
+▸ **useCachingTopic**<Data, Params, TriggerData\>(`original`: *Topic*<Data, Params, TriggerData\>): *Topic*<Data, Params, TriggerData\>
+
+Create a new {@link @push-rpc/core.Topic} that will cache invocations to .get
+
+To be used when multiple consumers use the same data from server:
+```
+const {fields} = useForm()
+const folders = useCachingTopic(services.folders)
+..
+<div>Move files</div>
+<Select label="From" field={fields.from} topic={folders}/>
+<Select label="To" field={fields.to} topic={folders}/>
+```
 
 #### Type parameters:
 
 | Name | Default |
 | :------ | :------ |
-| `D` | - |
-| `P` | {} |
-| `TD` | D |
+| `Data` | - |
+| `Params` | {} |
+| `TriggerData` | Data |
 
 #### Parameters:
 
 | Name | Type |
 | :------ | :------ |
-| `original` | *Topic*<D, P, TD\> |
+| `original` | *Topic*<Data, Params, TriggerData\> |
 
-**Returns:** *Topic*<D, P, TD\>
+**Returns:** *Topic*<Data, Params, TriggerData\>
 
-Defined in: [useCachingTopic.ts:4](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useCachingTopic.ts#L4)
+Defined in: [useCachingTopic.ts:19](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useCachingTopic.ts#L19)
 
 ___
 
@@ -250,13 +276,15 @@ In addition, form creates a set of action, see [useActions](README.md#useactions
 
 **Returns:** [*Form*](interfaces/form.md)<Data\>
 
-Defined in: [useForm.tsx:54](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useForm.tsx#L54)
+Defined in: [useForm.tsx:54](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L54)
 
 ___
 
 ### usePrevious
 
 ▸ **usePrevious**<T\>(`value`: T): T
+
+Return value from previous render
 
 #### Type parameters:
 
@@ -272,7 +300,7 @@ ___
 
 **Returns:** T
 
-Defined in: [utils.tsx:5](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/utils.tsx#L5)
+Defined in: [utils.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/utils.tsx#L6)
 
 ___
 
@@ -282,7 +310,7 @@ ___
 
 **Returns:** Result
 
-Defined in: [result.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/result.tsx#L6)
+Defined in: [result.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/result.tsx#L6)
 
 ___
 
@@ -329,4 +357,4 @@ to use inline objects as params.
 | `data` | Data | Loaded data or default value |
 | `loading` | *boolean* | True if loading request is in progress |
 
-Defined in: [useTopic.tsx:30](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useTopic.tsx#L30)
+Defined in: [useTopic.tsx:30](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useTopic.tsx#L30)

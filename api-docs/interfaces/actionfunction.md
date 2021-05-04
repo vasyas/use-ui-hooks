@@ -23,7 +23,7 @@ Start async action
 
 **Returns:** *void*
 
-Defined in: [useActions.ts:78](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useActions.ts#L78)
+Defined in: [useActions.ts:78](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useActions.ts#L78)
 
 ## Table of contents
 
@@ -39,4 +39,4 @@ Defined in: [useActions.ts:78](https://github.com/vasyas/use-ui-hooks/blob/246e5
 
 This if this action is in progress
 
-Defined in: [useActions.ts:82](https://github.com/vasyas/use-ui-hooks/blob/246e5b6/src/useActions.ts#L82)
+Defined in: [useActions.ts:82](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useActions.ts#L82)
