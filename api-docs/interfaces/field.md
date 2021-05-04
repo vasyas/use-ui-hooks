@@ -25,7 +25,7 @@ This object is passed into input components
 
 **Returns:** *string*
 
-Defined in: [useForm.tsx:294](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L294)
+Defined in: [useForm.tsx:294](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L294)
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 **Returns:** *string*
 
-Defined in: [useForm.tsx:290](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L290)
+Defined in: [useForm.tsx:290](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L290)
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [useForm.tsx:292](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L292)
+Defined in: [useForm.tsx:292](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L292)
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [useForm.tsx:293](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L293)
+Defined in: [useForm.tsx:293](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L293)
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 **Returns:** *void*
 
-Defined in: [useForm.tsx:289](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L289)
+Defined in: [useForm.tsx:289](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L289)
 
 ___
 
@@ -87,4 +87,4 @@ ___
 
 **Returns:** *any*
 
-Defined in: [useForm.tsx:291](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L291)
+Defined in: [useForm.tsx:291](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L291)

@@ -13,6 +13,7 @@
 - [FieldElement](interfaces/fieldelement.md)
 - [FieldType](interfaces/fieldtype.md)
 - [Form](interfaces/form.md)
+- [Result](interfaces/result.md)
 
 ### Type aliases
 
@@ -58,7 +59,7 @@ Action implementations should be async and accept at most one parameter
 
 **Returns:** *Promise*<void\>
 
-Defined in: [useActions.ts:76](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useActions.ts#L76)
+Defined in: [useActions.ts:76](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useActions.ts#L76)
 
 ___
 
@@ -68,7 +69,7 @@ ___
 
 Names of pre-defined [FieldType](interfaces/fieldtype.md)s
 
-Defined in: [fieldTypes.ts:8](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/fieldTypes.ts#L8)
+Defined in: [fieldTypes.ts:8](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/fieldTypes.ts#L8)
 
 ___
 
@@ -76,13 +77,15 @@ ___
 
 Ƭ **ValidateMessages**: *typeof* enValidateMessages
 
-Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/validate.ts#L43)
+Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/validate.ts#L43)
 
 ## Functions
 
 ### ResultContext
 
 ▸ **ResultContext**(`props`: ResultContextProps): *Element*
+
+Install [Result](interfaces/result.md), used to track action results
 
 #### Parameters:
 
@@ -92,7 +95,7 @@ Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9
 
 **Returns:** *Element*
 
-Defined in: [result.tsx:16](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/result.tsx#L16)
+Defined in: [result.tsx:24](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/result.tsx#L24)
 
 ___
 
@@ -110,7 +113,7 @@ Return FieldType from its name
 
 **Returns:** [*FieldType*](interfaces/fieldtype.md)<unknown\>
 
-Defined in: [fieldTypes.ts:33](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/fieldTypes.ts#L33)
+Defined in: [fieldTypes.ts:33](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/fieldTypes.ts#L33)
 
 ___
 
@@ -141,7 +144,7 @@ Typical use case - inline edit:
 
 **Returns:** [*Field*](interfaces/field.md)
 
-Defined in: [utils.tsx:32](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/utils.tsx#L32)
+Defined in: [utils.tsx:32](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/utils.tsx#L32)
 
 ___
 
@@ -149,7 +152,7 @@ ___
 
 ▸ **useActions**(): [*Actions*](interfaces/actions.md)
 
-Hook that wraps async functions invocation (ie remote method) in try/catch/finally,
+Wraps async functions invocation (ie remote method) in try/catch/finally,
 maintaining `progress` and `error` state.
 
 ```typescript
@@ -174,7 +177,7 @@ In addition, action functions calls preventDefault for its first parameter, whic
 
 **Returns:** [*Actions*](interfaces/actions.md)
 
-Defined in: [useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useActions.ts#L27)
+Defined in: [useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useActions.ts#L27)
 
 ___
 
@@ -182,7 +185,7 @@ ___
 
 ▸ **useCachingTopic**<Data, Params, TriggerData\>(`original`: *Topic*<Data, Params, TriggerData\>): *Topic*<Data, Params, TriggerData\>
 
-Create a new {@link @push-rpc/core.Topic} that will cache invocations to .get
+Create a new {@link push-rpc/core.Topic} that will cache invocations to Topic.get.
 
 To be used when multiple consumers use the same data from server:
 ```
@@ -210,7 +213,7 @@ const folders = useCachingTopic(services.folders)
 
 **Returns:** *Topic*<Data, Params, TriggerData\>
 
-Defined in: [useCachingTopic.ts:19](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useCachingTopic.ts#L19)
+Defined in: [useCachingTopic.ts:19](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useCachingTopic.ts#L19)
 
 ___
 
@@ -224,7 +227,7 @@ Use it in a form component that can edit data in one or more input fields:
 
 ```typescript
 import {useForm} from "@use-ui/hooks"
-import {ActionResult, Input} from "@use-ui/bootstrap3"
+import {Input} from "@use-ui/bootstrap3"
 
 interface LoginData {
   login: string
@@ -249,16 +252,16 @@ return (
 )
 ```
 
-Form consist of multiple [Field](interfaces/field.md)s. Each field has value and validation error. Each field is linked to a
-[FieldElement](interfaces/fieldelement.md). [FieldElement](interfaces/fieldelement.md) is implemented by input component, and contains information about field's [FieldType](interfaces/fieldtype.md)
-and validation constraints [Constraint](interfaces/constraint.md).
+Form consists of multiple [Field](interfaces/field.md)s. Each field has a value and a validation error. Each field is linked to a
+[FieldElement](interfaces/fieldelement.md). [FieldElement](interfaces/fieldelement.md) is implemented by input component (Input in an example above), and contains information about field's [FieldType](interfaces/fieldtype.md)
+and validation [Constraint](interfaces/constraint.md)s.
 
-Field value is a string. Form data can be of different types, and field type define how to convert form data to a field value and back.
+Field value is a string. Form data can be of different types, and [FieldType](interfaces/fieldtype.md) defines how to convert form data to a field value and back.
 There are four predefined [FieldTypeName](README.md#fieldtypename)s. Custom field types can also be used.
 
-Input components are implemented in a separate libraries, for example see [@use-ui/bootstrap3](https://github.com/vasyas/use-ui-bootstrap3).
+Input components are implemented in a separate libraries, for example [@use-ui/bootstrap3](https://github.com/vasyas/use-ui-bootstrap3).
 
-In addition, form creates a set of action, see [useActions](README.md#useactions). Form action behaves in the same way as in useAction, except
+In addition, form creates a set of action, see [useActions](README.md#useactions). Form action behaves in the same way as in `useActions`, except:
 1) Action implementation receives current form data as the first param
 2) Actions are not launched if form is invalid.
 
@@ -266,17 +269,17 @@ In addition, form creates a set of action, see [useActions](README.md#useactions
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `Data` | *Record*<string, unknown\> | Type of form's data. Form values can be of any type. Type should be convertable to a string with a FieldType specified via input component. |
+| `Data` | *Record*<string, unknown\> | Type of form's data. Form data items can be of any type. Type should be convertible to a string using [FieldType](interfaces/fieldtype.md) specified via input component. |
 
 #### Parameters:
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `initialData?` | Data | initial data for field values. useForm supports updating it after initial mount, so it can be loaded async |
+| `initialData?` | Data | initial data for field values. useForm supports updating it after initial mount, so it can be loaded async. |
 
 **Returns:** [*Form*](interfaces/form.md)<Data\>
 
-Defined in: [useForm.tsx:54](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L54)
+Defined in: [useForm.tsx:54](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L54)
 
 ___
 
@@ -284,7 +287,7 @@ ___
 
 ▸ **usePrevious**<T\>(`value`: T): T
 
-Return value from previous render
+Return value from previous render.
 
 #### Type parameters:
 
@@ -300,17 +303,23 @@ Return value from previous render
 
 **Returns:** T
 
-Defined in: [utils.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/utils.tsx#L6)
+Defined in: [utils.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/utils.tsx#L6)
 
 ___
 
 ### useResult
 
-▸ **useResult**(): Result
+▸ **useResult**(): [*Result*](interfaces/result.md)
 
-**Returns:** Result
+Return global [Result](interfaces/result.md), installed via ResultContext.
 
-Defined in: [result.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/result.tsx#L6)
+Result is used to set/clear operation results.
+
+Result is auto-cleared on history change.
+
+**Returns:** [*Result*](interfaces/result.md)
+
+Defined in: [result.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/result.tsx#L13)
 
 ___
 
@@ -357,4 +366,4 @@ to use inline objects as params.
 | `data` | Data | Loaded data or default value |
 | `loading` | *boolean* | True if loading request is in progress |
 
-Defined in: [useTopic.tsx:30](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useTopic.tsx#L30)
+Defined in: [useTopic.tsx:30](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useTopic.tsx#L30)

@@ -1,7 +1,7 @@
 import {useState} from "react"
 
 /**
- * Hook that wraps async functions invocation (ie remote method) in try/catch/finally,
+ * Wraps async functions invocation (ie remote method) in try/catch/finally,
  * maintaining `progress` and `error` state.
  *
  *```typescript

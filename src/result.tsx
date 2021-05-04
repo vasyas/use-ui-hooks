@@ -3,6 +3,13 @@ import {useContext, useEffect, useState} from "react"
 
 const resultContext = React.createContext<Result>(null)
 
+/**
+ * Return global {@link Result}, installed via ResultContext.
+ *
+ * Result is used to set/clear operation results.
+ *
+ * Result is auto-cleared on history change.
+ */
 export function useResult(): Result {
   const result = useContext(resultContext)
   return result
@@ -13,10 +20,11 @@ interface ResultContextProps {
   addHistoryChangeListener?(handler: () => void): void
 }
 
+/** Install {@link Result}, used to track action results */
 export function ResultContext(props: ResultContextProps) {
   const [resultState, setResultState] = useState<Result>({
     result: null,
-    setResult: result =>
+    setResult: (result) =>
       setResultState({
         result,
         setResult: resultState.setResult,
@@ -33,7 +41,7 @@ export function ResultContext(props: ResultContextProps) {
   return <resultContext.Provider value={resultState}>{props.children}</resultContext.Provider>
 }
 
-interface Result {
+export interface Result {
   result: string
   setResult(result: string): void
 }

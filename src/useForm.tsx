@@ -10,7 +10,7 @@ import {Constraint, enValidateMessages, message} from "./validate"
  *
  * ```typescript
  * import {useForm} from "@use-ui/hooks"
- * import {ActionResult, Input} from "@use-ui/bootstrap3"
+ * import {Input} from "@use-ui/bootstrap3"
  *
  * interface LoginData {
  *   login: string
@@ -35,21 +35,21 @@ import {Constraint, enValidateMessages, message} from "./validate"
  * )
  * ```
  *
- * Form consist of multiple {@link Field}s. Each field has value and validation error. Each field is linked to a
- * {@link FieldElement}. {@link FieldElement} is implemented by input component, and contains information about field's {@link FieldType}
- * and validation constraints {@link Constraint}.
+ * Form consists of multiple {@link Field}s. Each field has a value and a validation error. Each field is linked to a
+ * {@link FieldElement}. {@link FieldElement} is implemented by input component (Input in an example above), and contains information about field's {@link FieldType}
+ * and validation {@link Constraint}s.
  *
- * Field value is a string. Form data can be of different types, and field type define how to convert form data to a field value and back.
+ * Field value is a string. Form data can be of different types, and {@link FieldType} defines how to convert form data to a field value and back.
  * There are four predefined {@link FieldTypeName}s. Custom field types can also be used.
  *
- * Input components are implemented in a separate libraries, for example see [@use-ui/bootstrap3](https://github.com/vasyas/use-ui-bootstrap3).
+ * Input components are implemented in a separate libraries, for example [@use-ui/bootstrap3](https://github.com/vasyas/use-ui-bootstrap3).
  *
- * In addition, form creates a set of action, see {@link useActions}. Form action behaves in the same way as in useAction, except
+ * In addition, form creates a set of action, see {@link useActions}. Form action behaves in the same way as in `useActions`, except:
  * 1) Action implementation receives current form data as the first param
  * 2) Actions are not launched if form is invalid.
  *
- * @typeParam Data Type of form's data. Form values can be of any type. Type should be convertable to a string with a FieldType specified via input component.
- * @param initialData  initial data for field values. useForm supports updating it after initial mount, so it can be loaded async
+ * @typeParam Data Type of form's data. Form data items can be of any type. Type should be convertible to a string using {@link FieldType} specified via input component.
+ * @param initialData  initial data for field values. useForm supports updating it after initial mount, so it can be loaded async.
  */
 export function useForm<Data extends Record<string, unknown>>(initialData?: Data): Form<Data> {
   type FieldName = keyof Data

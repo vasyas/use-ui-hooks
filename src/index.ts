@@ -1,5 +1,5 @@
 export {useActions, ActionFunction, Actions, ActionImpl} from "./useActions"
-export {ResultContext, useResult} from "./result"
+export {ResultContext, useResult, Result} from "./result"
 export {useTopic} from "./useTopic"
 export {useForm, Field, FieldElement, Form} from "./useForm"
 export {FieldType, FieldTypeName, getFieldType} from "./fieldTypes"

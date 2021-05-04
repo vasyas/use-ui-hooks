@@ -2,7 +2,7 @@ import {Topic} from "@push-rpc/core"
 import {useRef} from "react"
 
 /**
- * Create a new {@link @push-rpc/core.Topic} that will cache invocations to .get
+ * Create a new {@link push-rpc/core.Topic} that will cache invocations to Topic.get.
  *
  * To be used when multiple consumers use the same data from server:
  * ```

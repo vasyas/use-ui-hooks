@@ -32,7 +32,7 @@ Form state + form actions (see [Actions](actions.md), @link [useActions](../READ
 
 Current data (derived from initial data + overriden in the input fields)
 
-Defined in: [useForm.tsx:263](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L263)
+Defined in: [useForm.tsx:263](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L263)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 Form action error
 
-Defined in: [useForm.tsx:268](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L268)
+Defined in: [useForm.tsx:268](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L268)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 Hash of form fields
 
-Defined in: [useForm.tsx:261](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L261)
+Defined in: [useForm.tsx:261](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L261)
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 True if any of the form actions are in progress now
 
-Defined in: [useForm.tsx:270](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L270)
+Defined in: [useForm.tsx:270](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L270)
 
 ## Methods
 
@@ -88,7 +88,7 @@ Create form action
 
 **Returns:** [*ActionFunction*](actionfunction.md)<Params\>
 
-Defined in: [useForm.tsx:272](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L272)
+Defined in: [useForm.tsx:272](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L272)
 
 ___
 
@@ -106,4 +106,4 @@ Programmatically change form field values. Triggers validation for updated field
 
 **Returns:** *any*
 
-Defined in: [useForm.tsx:265](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L265)
+Defined in: [useForm.tsx:265](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L265)

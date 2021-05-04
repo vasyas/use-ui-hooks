@@ -22,7 +22,7 @@ Input components register themselves in the form using this adapter
 
 • **constraint**: *Partial*<[*Constraint*](constraint.md)\>
 
-Defined in: [useForm.tsx:299](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L299)
+Defined in: [useForm.tsx:299](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L299)
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 • `Optional` **type**: *string* \| [*FieldType*](fieldtype.md)<unknown\>
 
-Defined in: [useForm.tsx:300](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L300)
+Defined in: [useForm.tsx:300](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L300)
 
 ## Methods
 
@@ -40,7 +40,7 @@ Defined in: [useForm.tsx:300](https://github.com/vasyas/use-ui-hooks/blob/79a3bd
 
 **Returns:** *void*
 
-Defined in: [useForm.tsx:302](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L302)
+Defined in: [useForm.tsx:302](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L302)
 
 ___
 
@@ -50,4 +50,4 @@ ___
 
 **Returns:** *void*
 
-Defined in: [useForm.tsx:301](https://github.com/vasyas/use-ui-hooks/blob/79a3bd9/src/useForm.tsx#L301)
+Defined in: [useForm.tsx:301](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L301)

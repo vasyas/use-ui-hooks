@@ -2,7 +2,7 @@ import * as React from "react"
 import {useEffect, useRef} from "react"
 import {Field} from "./useForm"
 
-/** Return value from previous render */
+/** Return value from previous render. */
 export function usePrevious<T>(value: T) {
   const ref = useRef<T>()
   useEffect(() => {
