@@ -1,10 +1,27 @@
 import {Topic} from "@push-rpc/core"
 import {useRef} from "react"
 
-export function useCachingTopic<D, P = {}, TD = D>(original: Topic<D, P, TD>): Topic<D, P, TD> {
-  const cache: {[key: string]: Promise<D>} = useRef({}).current
+/**
+ * Create a new {@link @push-rpc/core.Topic} that will cache invocations to .get
+ *
+ * To be used when multiple consumers use the same data from server:
+ * ```
+ * const {fields} = useForm()
+ * const folders = useCachingTopic(services.folders)
+ * ..
+ * <div>Move files</div>
+ * <Select label="From" field={fields.from} topic={folders}/>
+ * <Select label="To" field={fields.to} topic={folders}/>
+ * ```
+ *
+ * @param original
+ */
+export function useCachingTopic<Data, Params = {}, TriggerData = Data>(
+  original: Topic<Data, Params, TriggerData>
+): Topic<Data, Params, TriggerData> {
+  const cache: {[key: string]: Promise<Data>} = useRef({}).current
 
-  const topic: Topic<D, P, TD> = {
+  const topic: Topic<Data, Params, TriggerData> = {
     subscribe(consumer, params?, subscriptionKey?) {
       return original.subscribe(consumer, params, subscriptionKey)
     },
@@ -17,10 +34,8 @@ export function useCachingTopic<D, P = {}, TD = D>(original: Topic<D, P, TD>): T
       original.trigger(p)
     },
 
-    async get(params?) {
+    get(params?) {
       const key = JSON.stringify(params == undefined ? null : params)
-
-      const id = Math.random()
 
       if (!cache[key]) {
         cache[key] = original.get(params)

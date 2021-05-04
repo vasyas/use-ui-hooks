@@ -7,7 +7,13 @@ Best used with [Push-RPC](https://github.com/vasyas/push-rpc) framework.
 
 [useActions](./api-docs/README.md#useactions) - Create async actions, with error handling & progress tracking 
 
-[useForm](./api-docs/README.md#useform) - Create async actions, with error handling & progress tracking 
+[useForm](./api-docs/README.md#useform) - Create async actions, with error handling & progress tracking
+
+## Additional hooks/utils
+
+[useCachingTopic](./api-docs/README.md#usecachingtopic) - Cache topic data for multiple subscribers
+[usePrevious](./api-docs/README.md#usecachingtopic) - Hook to use data from the previous render
+[oneTimeField](./api-docs/README.md#onetimefield) - Create a one-time field to be used with input components instead of useForm. 
 
 ## Typical use cases
 
