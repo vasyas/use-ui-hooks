@@ -42,6 +42,6 @@ Best used with [Push-RPC](https://github.com/vasyas/push-rpc) framework.
 
 #### Trim input value after edit
 
-# API Docs
+# API Reference
 
 [/api-docs/README.md](/api-docs/README.md)
