@@ -41,6 +41,7 @@ Best used with [Push-RPC](https://github.com/vasyas/push-rpc) framework.
 ### Extra cases
 
 #### Trim input value after edit
+#### Do some action on form data change 
 
 # API Reference
 
