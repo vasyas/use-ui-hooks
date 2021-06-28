@@ -112,12 +112,13 @@ export function useForm<Data extends Record<string, unknown>>(initialData?: Data
         return getFieldValue(name)
       },
       setValue(s: string) {
+        setValues((values) => ({...values, [name]: s}))
+
+        // TODO useEffect instead of this, b/c values maybe old?
         const newValues = {
           ...values,
           [name]: s,
         }
-
-        setValues(newValues)
 
         if (errors[name]) updateValidationError(name, newValues)
       },
