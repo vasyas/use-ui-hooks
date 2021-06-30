@@ -78,9 +78,13 @@ export function useForm<Data extends Record<string, unknown>>(
 
   useEffect(() => {
     if (typeof dataInitializer == "function") {
-      dataInitializer().then(setInitialData)
+      if (initialData === undefined) {
+        dataInitializer().then(setInitialData)
+      }
+    } else {
+      setInitialData(dataInitializer)
     }
-  }, [])
+  }, [JSON.stringify(dataInitializer)])
 
   function getActionData(): Data {
     return (Object.keys(fieldElements.current) as Array<FieldName>).reduce((r, name) => {
