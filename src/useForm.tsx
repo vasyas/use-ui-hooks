@@ -1,4 +1,4 @@
-import {useRef, useState} from "react"
+import {useEffect, useRef, useState} from "react"
 import {FieldType, FieldTypeName, getFieldType} from "./fieldTypes"
 import {ActionFunction, useActions} from "./useActions"
 import {Constraint, enValidateMessages, message} from "./validate"
@@ -48,17 +48,39 @@ import {Constraint, enValidateMessages, message} from "./validate"
  * 1) Action implementation receives current form data as the first param
  * 2) Actions are not launched if form is invalid.
  *
+ * To set initial data for the form fields, pass data as object:
+ * ```
+ * const form = useForm<LoginData>({login: "my-login"})
+ * ```
+ *
+ * or use async loader function:
+ * ```
+ * const form = useForm<LoginData>(async () => await fetchInitialData(params))
+ * ```
+ *
  * @typeParam Data Type of form's data. Form data items can be of any type. Type should be convertible to a string using {@link FieldType} specified via input component.
- * @param initialData  initial data for field values. useForm supports updating it after initial mount, so it can be loaded async.
+ * @param dataInitializer  initial data for field values. Either object or async loader functions
  */
-export function useForm<Data extends Record<string, unknown>>(initialData?: Data): Form<Data> {
+export function useForm<Data extends Record<string, unknown>>(
+  dataInitializer?: Data | (() => Promise<Data>)
+): Form<Data> {
   type FieldName = keyof Data
+
+  const [initialData, setInitialData] = useState<Data>(
+    typeof dataInitializer == "function" ? undefined : dataInitializer
+  )
 
   const [errors, setErrors] = useState<Errors<Data>>({})
   const [values, setValues] = useState<Values<Data>>({})
   const fieldElements = useRef<FieldElements<Data>>({})
 
   const action = useActions()
+
+  useEffect(() => {
+    if (typeof dataInitializer == "function") {
+      dataInitializer().then(setInitialData)
+    }
+  }, [])
 
   function getActionData(): Data {
     return (Object.keys(fieldElements.current) as Array<FieldName>).reduce((r, name) => {
