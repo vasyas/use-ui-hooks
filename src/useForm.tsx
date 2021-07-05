@@ -114,7 +114,7 @@ export function useForm<Data extends Record<string, unknown>>(
     })
   }
 
-  function getFieldValue(name: FieldName, currentValues = values) {
+  function getFieldValue(name: FieldName, currentValues = values): string {
     if (currentValues[name] !== undefined) return currentValues[name]
 
     if (initialData) {
