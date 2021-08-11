@@ -93,7 +93,7 @@ export function useForm<Data extends Record<string, unknown>>(
       if (typeof values[name] != "undefined") {
         d = getConfiguredFieldType(name).valueToData(values[name])
       } else {
-        d = initialData[name]
+        d = initialData?.[name]
       }
 
       r[name] = d
@@ -217,7 +217,7 @@ export function useForm<Data extends Record<string, unknown>>(
   }
 
   function createData(): Data {
-    const r = {...initialData}
+    const r = initialData ? {...initialData} : ({} as Data)
 
     for (const name of Object.keys(values) as FieldName[]) {
       r[name] = getConfiguredFieldType(name).valueToData(values[name]) as any
