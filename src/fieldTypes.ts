@@ -27,6 +27,11 @@ const fieldTypes: {[name: string]: FieldType<any>} = {
     dataToValue: (data: string[]): string => (data != null ? data.join(",") : ""),
     valueToData: (value: string): string[] => (value ? value.split(",") : null),
   },
+
+  numberList: {
+    dataToValue: (data: number[]): string => (data != null ? data.join(",") : ""),
+    valueToData: (value: string): number[] => (value ? value.split(",").map((s) => +s) : null),
+  },
 }
 
 /** Return FieldType from its name */
