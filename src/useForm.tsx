@@ -110,7 +110,18 @@ export function useForm<Data extends Record<string, unknown>>(
         return
       }
 
-      await impl(getActionData(), p)
+      try {
+        await impl(getActionData(), p)
+      } catch (e) {
+        if (e.fieldErrors) {
+          setErrors({
+            ...errors,
+            ...e.fieldErrors,
+          })
+        }
+
+        throw e
+      }
     })
   }
 
