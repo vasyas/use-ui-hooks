@@ -37,10 +37,10 @@ export function useTopic<Data, Params>(
   /** True if loading request is in progress */
   loading: boolean
 } {
-  const [data, setData] = useState<Data>(def)
+  const [data, setData] = useState<Data>(def as any) // intentionally breaking type-safety here for convenience
   const [loading, setLoading] = useState<boolean>(true)
 
-  const receiveData = useCallback((data) => {
+  const receiveData = useCallback((data: Data) => {
     setLoading(false)
     setData(data)
   }, [])

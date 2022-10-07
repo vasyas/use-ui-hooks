@@ -14,17 +14,17 @@
   "homepage": "https://github.com/vasyas/use-ui-hooks",
   "author": "vasyas <vasyl@stashuk.com>",
   "devDependencies": {
-    "@push-rpc/core": "^1.2.9",
-    "@types/chai": "^4.2.17",
-    "@types/mocha": "^8.2.2",
-    "@types/react": "^17.0.4",
-    "chai": "^4.3.4",
-    "mocha": "^8.3.2",
-    "prettier": "^2.2.1",
-    "ts-node": "^9.1.1",
-    "typedoc": "^0.20.36",
-    "typedoc-plugin-markdown": "^3.7.2",
-    "typescript": "^4.2.4"
+    "@push-rpc/core": "^1.5.3",
+    "@types/chai": "^4.3.3",
+    "@types/mocha": "^10.0.0",
+    "@types/react": "^18.0.21",
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "typedoc": "^0.23.15",
+    "typedoc-plugin-markdown": "^3.13.6",
+    "typescript": "^4.8.4"
   },
   "peerDependencies": {
     "@push-rpc/core": "^1.2.6",

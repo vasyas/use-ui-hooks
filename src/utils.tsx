@@ -41,7 +41,7 @@ export function oneTimeField(accept: (value: string) => void, value: string = ""
     onBlur() {},
     onFocus() {},
     getError() {
-      return null
+      return undefined
     },
   }
 }

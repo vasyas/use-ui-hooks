@@ -28,19 +28,20 @@ export function message(
 
   for (const key of Object.keys(otherConstraints)) {
     if (customValidators[key]) {
-      const message = customValidators[key](value, otherConstraints[key])
+      const constraint = (otherConstraints as any)[key]
+      const message = customValidators[key](value, constraint)
 
       if (message) return message
     }
   }
 }
 
-export function validInteger(s) {
+export function validInteger(s: string): boolean {
   return /^[0-9]*$/.test(s)
 }
 
-export function validNumber(s) {
-  return !isNaN(s)
+export function validNumber(s: string): boolean {
+  return !isNaN(+s)
 }
 
 export const enValidateMessages = {
@@ -56,10 +57,10 @@ export type ValidateMessages = typeof enValidateMessages
  * Function that could be called to validate form values.
  *
  * @param value form field value
- * @param propertyValue value of the field component property
+ * @param constraint value of the field component property
  * @return null if not errors or error message is validator fails
  */
-export type Validator = (value: string, propertyValue: any) => string
+export type Validator = (value: string, constraint: any) => string
 
 /**
  * Register new custom validator.

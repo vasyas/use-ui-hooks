@@ -1,7 +1,7 @@
 import * as React from "react"
 import {useContext, useEffect, useState} from "react"
 
-const resultContext = React.createContext<Result>(null)
+const resultContext = React.createContext<Result | undefined>(undefined)
 
 /**
  * Return global {@link Result}, installed via ResultContext.
@@ -10,7 +10,7 @@ const resultContext = React.createContext<Result>(null)
  *
  * Result is auto-cleared on history change.
  */
-export function useResult(): Result {
+export function useResult(): Result | undefined {
   const result = useContext(resultContext)
   return result
 }
@@ -23,7 +23,7 @@ interface ResultContextProps {
 /** Install {@link Result}, used to track action results */
 export function ResultContext(props: ResultContextProps) {
   const [resultState, setResultState] = useState<Result>({
-    result: null,
+    result: undefined,
     setResult: (result) =>
       setResultState({
         result,
@@ -34,7 +34,7 @@ export function ResultContext(props: ResultContextProps) {
   useEffect(() => {
     props.addHistoryChangeListener &&
       props.addHistoryChangeListener(() => {
-        resultState.setResult(null)
+        resultState.setResult(undefined)
       })
   }, [])
 
@@ -42,6 +42,6 @@ export function ResultContext(props: ResultContextProps) {
 }
 
 export interface Result {
-  result: string
-  setResult(result: string): void
+  result: string | undefined
+  setResult(result: string | undefined): void
 }

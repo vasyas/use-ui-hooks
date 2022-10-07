@@ -25,8 +25,8 @@ import {useState} from "react"
  * ```
  */
 export function useActions(): Actions {
-  const [error, setError] = useState<string>()
-  const [progress, setProgress] = useState<number>(null)
+  const [error, setError] = useState<string | undefined>()
+  const [progress, setProgress] = useState<number | undefined>(undefined)
 
   let actionIndex = 0
 
@@ -35,18 +35,18 @@ export function useActions(): Actions {
 
     const thisActionIndex = actionIndex
 
-    const trackedAction: ActionFunction<P> = (async (e?, params?: P) => {
+    const trackedAction: ActionFunction<P> = (async (e?: Event, params?: P) => {
       e && e.preventDefault && e.preventDefault()
 
       try {
         setProgress(thisActionIndex)
-        setError(null)
+        setError(undefined)
 
         await impl(params)
-      } catch (e) {
+      } catch (e: any) {
         setError(e.message)
       } finally {
-        setProgress(null)
+        setProgress(undefined)
       }
     }) as any
 
@@ -65,7 +65,7 @@ export function useActions(): Actions {
 /** Factory for creating actions and information about last error */
 export interface Actions {
   /** Last action error */
-  error: string
+  error: string | undefined
   /** Create action function from implementation */
   action<Params>(impl: ActionImpl<Params>): ActionFunction<Params>
   /** True if any of the created actions are in progress */
@@ -73,11 +73,13 @@ export interface Actions {
 }
 
 /** Action implementations should be async and accept at most one parameter */
-export type ActionImpl<Params> = (p?: Params) => Promise<void>
+export type ActionImpl<Params> = (p?: Params) => Promise<unknown>
 
 export interface ActionFunction<P> {
   /** Start async action */
-  (e?, params?: P): void
+  (e?: Event, params?: P): void
   /** This if this action is in progress */
   progress: boolean
 }
+
+type Event = {preventDefault(): void}

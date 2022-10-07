@@ -66,7 +66,7 @@ export function useForm<Data extends Record<string, unknown>>(
 ): Form<Data> {
   type FieldName = keyof Data
 
-  const [initialData, setInitialData] = useState<Data>(
+  const [initialData, setInitialData] = useState<Data | undefined>(
     typeof dataInitializer == "function" ? undefined : dataInitializer
   )
 
@@ -96,7 +96,7 @@ export function useForm<Data extends Record<string, unknown>>(
         d = initialData?.[name]
       }
 
-      r[name] = d
+      r[name] = d as any
       return r
     }, {} as Data)
   }
@@ -112,7 +112,7 @@ export function useForm<Data extends Record<string, unknown>>(
 
       try {
         await impl(getActionData(), p)
-      } catch (e) {
+      } catch (e: any) {
         if (e.fieldErrors) {
           setErrors({
             ...errors,
@@ -125,8 +125,12 @@ export function useForm<Data extends Record<string, unknown>>(
     })
   }
 
-  function getFieldValue(name: FieldName, currentValues = values): string {
-    if (currentValues[name] !== undefined) return currentValues[name]
+  function getFieldValue(name: FieldName, currentValues: Values<Data> = values): string {
+    const currentValue = currentValues[name]
+
+    if (currentValue !== undefined) {
+      return currentValue
+    }
 
     if (initialData) {
       return getConfiguredFieldType(name).dataToValue(initialData[name])
@@ -179,7 +183,7 @@ export function useForm<Data extends Record<string, unknown>>(
     }
   }
 
-  function autofixValue(name) {
+  function autofixValue(name: keyof Data): boolean {
     /*
     const value = this.getValue()
     const {name} = this.props
@@ -197,7 +201,7 @@ export function useForm<Data extends Record<string, unknown>>(
     return false
   }
 
-  function updateValidationError(name, currentValues = values) {
+  function updateValidationError(name: keyof Data, currentValues = values) {
     const error = validate(name, currentValues)
     setErrors({
       ...errors,
@@ -205,7 +209,7 @@ export function useForm<Data extends Record<string, unknown>>(
     })
   }
 
-  function validate(name, currentValues = values) {
+  function validate(name: keyof Data, currentValues = values) {
     const fieldElement = fieldElements.current[name]
     if (!fieldElement) return
 
@@ -217,7 +221,7 @@ export function useForm<Data extends Record<string, unknown>>(
     return new Proxy(
       {},
       {
-        get(target, name) {
+        get(target: any, name: symbol | string) {
           // skip internal props
           if (typeof name != "string") return target[name]
 
@@ -238,15 +242,15 @@ export function useForm<Data extends Record<string, unknown>>(
   }
 
   function revalidate() {
-    const errors = {}
+    const errors: Errors<Data> = {}
 
     let focused = false
 
-    Object.keys(fieldElements.current).forEach((name) => {
+    Object.keys(fieldElements.current).forEach((name: keyof Data) => {
       errors[name] = validate(name)
 
       if (!focused && errors[name]) {
-        fieldElements.current[name].focus()
+        fieldElements.current[name]?.focus()
         focused = true
       }
     })
@@ -300,10 +304,10 @@ export interface Form<Data> {
   /** Current data (derived from initial data + overriden in the input fields) */
   data: Data
   /** Programmatically change form field values. Triggers validation for updated fields */
-  updateValues(update: Partial<Values<Data>>)
+  updateValues(update: Partial<Values<Data>>): void
 
   /** Form action error */
-  error: string
+  error: string | undefined
   /** True if any of the form actions are in progress now */
   progress: boolean
   /** Create form action */
@@ -313,7 +317,7 @@ export interface Form<Data> {
   ): ActionFunction<Params>
 }
 
-type Fields<Data> = Partial<{[FieldName in keyof Data]: Field}>
+type Fields<Data> = {[FieldName in keyof Data]: Field}
 type Values<Data> = Partial<{[FieldName in keyof Data]: string}>
 type Errors<Data> = Partial<{[FieldName in keyof Data]: string}>
 type FieldElements<Data> = Partial<{[FieldName in keyof Data]: FieldElement}>
@@ -326,10 +330,10 @@ type FieldElements<Data> = Partial<{[FieldName in keyof Data]: FieldElement}>
 export interface Field {
   setFieldElement(fieldElement: FieldElement): void
   getValue(): string
-  setValue(s: string)
+  setValue(s: string): void
   onBlur(): void
   onFocus(): void
-  getError(): string
+  getError(): string | undefined
 }
 
 /** Input components register themselves in the form using this adapter */
@@ -346,7 +350,7 @@ export interface FieldElement {
 export type FormActionImpl<Fields, Params = void> = (
   fields: Fields,
   params?: Params
-) => Promise<void>
+) => Promise<unknown>
 
 // To disable validation on special occasions (ie selecting item on custom selects)
 let disableBlurValidation = false
