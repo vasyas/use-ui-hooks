@@ -87,7 +87,9 @@ export function useForm<Data extends Record<string, unknown>>(
   }, [JSON.stringify(dataInitializer)])
 
   function getActionData(): Data {
-    return (Object.keys(fieldElements.current) as Array<FieldName>).reduce((r, name) => {
+    const r: Data = initialData ? {...initialData} : ({} as any)
+
+    (Object.keys(fieldElements.current) as Array<FieldName>).forEach((name: keyof Data) => {
       let d
 
       if (typeof values[name] != "undefined") {
@@ -97,8 +99,9 @@ export function useForm<Data extends Record<string, unknown>>(
       }
 
       r[name] = d as any
-      return r
-    }, {} as Data)
+    })
+
+    return data
   }
 
   function formAction<Params>(
