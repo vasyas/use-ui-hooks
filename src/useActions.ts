@@ -44,6 +44,7 @@ export function useActions(): Actions {
 
         await impl(params)
       } catch (e: any) {
+        globalErrorListener(e)
         setError(e.message)
       } finally {
         setProgress(undefined)
@@ -83,3 +84,9 @@ export interface ActionFunction<P> {
 }
 
 type Event = {preventDefault(): void}
+
+let globalErrorListener: (e: any) => void = () => {}
+
+export function setGlobalErrorListener(listener: (e: any) => void) {
+  globalErrorListener = listener
+}
