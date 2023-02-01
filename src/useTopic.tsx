@@ -1,4 +1,5 @@
 import {Topic} from "@push-rpc/core"
+import {CallOptions} from "@push-rpc/core/dist/rpc"
 import * as React from "react"
 import {useCallback, useEffect, useState} from "react"
 
@@ -30,13 +31,16 @@ import {useCallback, useEffect, useState} from "react"
 export function useTopic<Data, Params>(
   topic: Topic<Data, Params>,
   params: Params,
-  def?: Data
+  def?: Data,
+  opts?: Options
 ): {
   /** Loaded data or default value */
   data: Data
   /** True if loading request is in progress */
   loading: boolean
 } {
+  const {resetOnChange, ...callOpts} = opts || {}
+
   const [data, setData] = useState<Data>(def as any) // intentionally breaking type-safety here for convenience
   const [loading, setLoading] = useState<boolean>(true)
 
@@ -48,15 +52,23 @@ export function useTopic<Data, Params>(
   useEffect(() => {
     if (params) {
       setLoading(true)
-      topic.subscribe(receiveData, params)
+      topic.subscribe(receiveData, params, undefined, callOpts)
     }
 
     return () => {
       if (params) {
         topic.unsubscribe(params, receiveData)
       }
+
+      if (resetOnChange) {
+        setData(def as any)
+      }
     }
   }, [JSON.stringify(params)])
 
   return {data, loading}
+}
+
+type Options = CallOptions & {
+  resetOnChange?: boolean
 }
