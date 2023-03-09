@@ -149,6 +149,9 @@ export function useForm<Data extends Record<string, unknown>>(
 
   function createField(name: keyof Data): Field {
     return {
+      getFieldElement(): FieldElement | undefined {
+        return fieldElements.current[name]
+      },
       setFieldElement(fieldElement: FieldElement) {
         fieldElements.current[name] = fieldElement
       },
@@ -331,6 +334,7 @@ type FieldElements<Data> = Partial<{[FieldName in keyof Data]: FieldElement}>
  * This object is passed into input components
  */
 export interface Field {
+  getFieldElement(): FieldElement | undefined
   setFieldElement(fieldElement: FieldElement): void
   getValue(): string
   setValue(s: string): void
