@@ -31,6 +31,9 @@ export function usePrevious<T>(value: T) {
  */
 export function oneTimeField(accept: (value: string) => void, value: string = ""): Field {
   return {
+    getFieldElement() {
+      return undefined
+    },
     setFieldElement() {},
     getValue() {
       return value
