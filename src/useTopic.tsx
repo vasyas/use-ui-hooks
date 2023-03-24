@@ -27,10 +27,11 @@ import {useCallback, useEffect, useState} from "react"
  * @param topic  Push-RPC Topic to load data
  * @param params  params to send to topic
  * @param def  default value to use until data is loaded, undefined by default
+ * @param opts  Invocation options
  */
 export function useTopic<Data, Params>(
   topic: Topic<Data, Params>,
-  params: Params,
+  params: Params | false | null | undefined,
   def?: Data,
   opts?: Options
 ): {
