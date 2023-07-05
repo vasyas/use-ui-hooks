@@ -87,9 +87,9 @@ export function useForm<Data extends Record<string, unknown>>(
   }, [JSON.stringify(dataInitializer)])
 
   function getActionData(): Data {
-    const r: Data = initialData ? {...initialData} : ({} as any);
+    const r: Data = initialData ? {...initialData} : ({} as any)
 
-    (Object.keys(fieldElements.current) as Array<FieldName>).forEach((name: keyof Data) => {
+    ;(Object.keys(fieldElements.current) as Array<FieldName>).forEach((name: keyof Data) => {
       let d
 
       if (typeof values[name] != "undefined") {
@@ -304,23 +304,23 @@ export function useForm<Data extends Record<string, unknown>>(
 }
 
 /** Form state + form actions (see {@link Actions}, @link {@link useActions}) */
-export interface Form<Data> {
+export type Form<Data> = {
   /** Hash of form fields */
   fields: Fields<Data>
   /** Current data (derived from initial data + overriden in the input fields) */
   data: Data
   /** Programmatically change form field values. Triggers validation for updated fields */
-  updateValues(update: Partial<Values<Data>>): void
+  updateValues: (update: Partial<Values<Data>>) => void
 
   /** Form action error */
   error: string | undefined
   /** True if any of the form actions are in progress now */
   progress: boolean
   /** Create form action */
-  action<Params>(
+  action: <Params>(
     impl: FormActionImpl<Data, Params>,
     options?: {validate: boolean}
-  ): ActionFunction<Params>
+  ) => ActionFunction<Params>
 }
 
 type Fields<Data> = {[FieldName in keyof Data]: Field}
