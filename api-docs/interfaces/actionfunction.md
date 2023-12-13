@@ -10,33 +10,41 @@
 
 ## Callable
 
-▸ **ActionFunction**(`e?`: *any*, `params?`: P): *void*
+### ActionFunction
+
+▸ **ActionFunction**(`e?`, `params?`): `void`
 
 Start async action
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `e?` | *any* |
-| `params?` | P |
+| `e?` | `Event` |
+| `params?` | `P` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [useActions.ts:78](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useActions.ts#L78)
+`void`
+
+#### Defined in
+
+[useActions.ts:81](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useActions.ts#L81)
 
 ## Table of contents
 
 ### Properties
 
-- [progress](actionfunction.md#progress)
+- [progress](ActionFunction.md#progress)
 
 ## Properties
 
 ### progress
 
-• **progress**: *boolean*
+• **progress**: `boolean`
 
 This if this action is in progress
 
-Defined in: [useActions.ts:82](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useActions.ts#L82)
+#### Defined in
+
+[useActions.ts:83](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useActions.ts#L83)

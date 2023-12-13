@@ -8,53 +8,61 @@ Factory for creating actions and information about last error
 
 ### Properties
 
-- [error](actions.md#error)
-- [progress](actions.md#progress)
+- [error](Actions.md#error)
+- [progress](Actions.md#progress)
 
 ### Methods
 
-- [action](actions.md#action)
+- [action](Actions.md#action)
 
 ## Properties
 
 ### error
 
-• **error**: *string*
+• **error**: `undefined` \| `string`
 
 Last action error
 
-Defined in: [useActions.ts:68](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useActions.ts#L68)
+#### Defined in
+
+[useActions.ts:69](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useActions.ts#L69)
 
 ___
 
 ### progress
 
-• **progress**: *boolean*
+• **progress**: `boolean`
 
 True if any of the created actions are in progress
 
-Defined in: [useActions.ts:72](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useActions.ts#L72)
+#### Defined in
+
+[useActions.ts:73](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useActions.ts#L73)
 
 ## Methods
 
 ### action
 
-▸ **action**<Params\>(`impl`: [*ActionImpl*](../README.md#actionimpl)<Params\>): [*ActionFunction*](actionfunction.md)<Params\>
+▸ **action**<`Params`\>(`impl`): [`ActionFunction`](ActionFunction.md)<`Params`\>
 
 Create action function from implementation
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
 | `Params` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `impl` | [*ActionImpl*](../README.md#actionimpl)<Params\> |
+| `impl` | [`ActionImpl`](../README.md#actionimpl)<`Params`\> |
 
-**Returns:** [*ActionFunction*](actionfunction.md)<Params\>
+#### Returns
 
-Defined in: [useActions.ts:70](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useActions.ts#L70)
+[`ActionFunction`](ActionFunction.md)<`Params`\>
+
+#### Defined in
+
+[useActions.ts:71](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useActions.ts#L71)

@@ -10,81 +10,120 @@ This object is passed into input components
 
 ### Methods
 
-- [getError](field.md#geterror)
-- [getValue](field.md#getvalue)
-- [onBlur](field.md#onblur)
-- [onFocus](field.md#onfocus)
-- [setFieldElement](field.md#setfieldelement)
-- [setValue](field.md#setvalue)
+- [getError](Field.md#geterror)
+- [getFieldElement](Field.md#getfieldelement)
+- [getValue](Field.md#getvalue)
+- [onBlur](Field.md#onblur)
+- [onFocus](Field.md#onfocus)
+- [setFieldElement](Field.md#setfieldelement)
+- [setValue](Field.md#setvalue)
 
 ## Methods
 
 ### getError
 
-▸ **getError**(): *string*
+▸ **getError**(): `undefined` \| `string`
 
-**Returns:** *string*
+#### Returns
 
-Defined in: [useForm.tsx:294](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L294)
+`undefined` \| `string`
+
+#### Defined in
+
+[useForm.tsx:343](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L343)
+
+___
+
+### getFieldElement
+
+▸ **getFieldElement**(): `undefined` \| [`FieldElement`](FieldElement.md)
+
+#### Returns
+
+`undefined` \| [`FieldElement`](FieldElement.md)
+
+#### Defined in
+
+[useForm.tsx:337](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L337)
 
 ___
 
 ### getValue
 
-▸ **getValue**(): *string*
+▸ **getValue**(): `string`
 
-**Returns:** *string*
+#### Returns
 
-Defined in: [useForm.tsx:290](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L290)
+`string`
+
+#### Defined in
+
+[useForm.tsx:339](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L339)
 
 ___
 
 ### onBlur
 
-▸ **onBlur**(): *void*
+▸ **onBlur**(): `void`
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [useForm.tsx:292](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L292)
+`void`
+
+#### Defined in
+
+[useForm.tsx:341](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L341)
 
 ___
 
 ### onFocus
 
-▸ **onFocus**(): *void*
+▸ **onFocus**(): `void`
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [useForm.tsx:293](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L293)
+`void`
+
+#### Defined in
+
+[useForm.tsx:342](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L342)
 
 ___
 
 ### setFieldElement
 
-▸ **setFieldElement**(`fieldElement`: [*FieldElement*](fieldelement.md)): *void*
+▸ **setFieldElement**(`fieldElement`): `void`
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `fieldElement` | [*FieldElement*](fieldelement.md) |
+| `fieldElement` | [`FieldElement`](FieldElement.md) |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [useForm.tsx:289](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L289)
+`void`
+
+#### Defined in
+
+[useForm.tsx:338](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L338)
 
 ___
 
 ### setValue
 
-▸ **setValue**(`s`: *string*): *any*
+▸ **setValue**(`s`): `void`
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `s` | *string* |
+| `s` | `string` |
 
-**Returns:** *any*
+#### Returns
 
-Defined in: [useForm.tsx:291](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L291)
+`void`
+
+#### Defined in
+
+[useForm.tsx:340](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L340)

@@ -6,39 +6,47 @@
 
 ### Properties
 
-- [integer](constraint.md#integer)
-- [nonNegative](constraint.md#nonnegative)
-- [number](constraint.md#number)
-- [required](constraint.md#required)
+- [integer](Constraint.md#integer)
+- [nonNegative](Constraint.md#nonnegative)
+- [number](Constraint.md#number)
+- [required](Constraint.md#required)
 
 ## Properties
 
 ### integer
 
-• **integer**: *boolean*
+• **integer**: `boolean`
 
-Defined in: [validate.ts:3](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/validate.ts#L3)
+#### Defined in
+
+[validate.ts:3](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/validate.ts#L3)
 
 ___
 
 ### nonNegative
 
-• **nonNegative**: *boolean*
+• **nonNegative**: `boolean`
 
-Defined in: [validate.ts:5](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/validate.ts#L5)
+#### Defined in
+
+[validate.ts:5](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/validate.ts#L5)
 
 ___
 
 ### number
 
-• **number**: *boolean*
+• **number**: `boolean`
 
-Defined in: [validate.ts:4](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/validate.ts#L4)
+#### Defined in
+
+[validate.ts:4](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/validate.ts#L4)
 
 ___
 
 ### required
 
-• **required**: *boolean*
+• **required**: `boolean`
 
-Defined in: [validate.ts:2](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/validate.ts#L2)
+#### Defined in
+
+[validate.ts:2](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/validate.ts#L2)

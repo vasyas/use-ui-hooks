@@ -6,32 +6,38 @@
 
 ### Properties
 
-- [result](result.md#result)
+- [result](Result.md#result)
 
 ### Methods
 
-- [setResult](result.md#setresult)
+- [setResult](Result.md#setresult)
 
 ## Properties
 
 ### result
 
-• **result**: *string*
+• **result**: `undefined` \| `string`
 
-Defined in: [result.tsx:45](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/result.tsx#L45)
+#### Defined in
+
+[result.tsx:45](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/result.tsx#L45)
 
 ## Methods
 
 ### setResult
 
-▸ **setResult**(`result`: *string*): *void*
+▸ **setResult**(`result`): `void`
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `result` | *string* |
+| `result` | `undefined` \| `string` |
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [result.tsx:46](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/result.tsx#L46)
+`void`
+
+#### Defined in
+
+[result.tsx:46](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/result.tsx#L46)

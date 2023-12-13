@@ -8,46 +8,58 @@ Input components register themselves in the form using this adapter
 
 ### Properties
 
-- [constraint](fieldelement.md#constraint)
-- [type](fieldelement.md#type)
+- [constraint](FieldElement.md#constraint)
+- [type](FieldElement.md#type)
 
 ### Methods
 
-- [blur](fieldelement.md#blur)
-- [focus](fieldelement.md#focus)
+- [blur](FieldElement.md#blur)
+- [focus](FieldElement.md#focus)
 
 ## Properties
 
 ### constraint
 
-• **constraint**: *Partial*<[*Constraint*](constraint.md)\>
+• **constraint**: `Partial`<[`Constraint`](Constraint.md)\>
 
-Defined in: [useForm.tsx:299](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L299)
+#### Defined in
+
+[useForm.tsx:348](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L348)
 
 ___
 
 ### type
 
-• `Optional` **type**: *string* \| [*FieldType*](fieldtype.md)<unknown\>
+• `Optional` **type**: `string` \| [`FieldType`](FieldType.md)<`unknown`\>
 
-Defined in: [useForm.tsx:300](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L300)
+#### Defined in
+
+[useForm.tsx:349](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L349)
 
 ## Methods
 
 ### blur
 
-▸ **blur**(): *void*
+▸ **blur**(): `void`
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [useForm.tsx:302](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L302)
+`void`
+
+#### Defined in
+
+[useForm.tsx:351](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L351)
 
 ___
 
 ### focus
 
-▸ **focus**(): *void*
+▸ **focus**(): `void`
 
-**Returns:** *void*
+#### Returns
 
-Defined in: [useForm.tsx:301](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L301)
+`void`
+
+#### Defined in
+
+[useForm.tsx:350](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L350)

@@ -14,37 +14,45 @@ Convert form data value to a string and back
 
 ### Methods
 
-- [dataToValue](fieldtype.md#datatovalue)
-- [valueToData](fieldtype.md#valuetodata)
+- [dataToValue](FieldType.md#datatovalue)
+- [valueToData](FieldType.md#valuetodata)
 
 ## Methods
 
 ### dataToValue
 
-▸ **dataToValue**(`data`: T): *any*
+▸ **dataToValue**(`data`): `string`
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `data` | T |
+| `data` | `T` |
 
-**Returns:** *any*
+#### Returns
 
-Defined in: [fieldTypes.ts:3](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/fieldTypes.ts#L3)
+`string`
+
+#### Defined in
+
+[fieldTypes.ts:3](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/fieldTypes.ts#L3)
 
 ___
 
 ### valueToData
 
-▸ **valueToData**(`value`: *string*): T
+▸ **valueToData**(`value`): ``null`` \| `T`
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `value` | *string* |
+| `value` | `undefined` \| `string` |
 
-**Returns:** T
+#### Returns
 
-Defined in: [fieldTypes.ts:4](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/fieldTypes.ts#L4)
+``null`` \| `T`
+
+#### Defined in
+
+[fieldTypes.ts:4](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/fieldTypes.ts#L4)
