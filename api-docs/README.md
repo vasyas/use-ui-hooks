@@ -6,26 +6,29 @@
 
 ### Interfaces
 
-- [ActionFunction](interfaces/actionfunction.md)
-- [Actions](interfaces/actions.md)
-- [Constraint](interfaces/constraint.md)
-- [Field](interfaces/field.md)
-- [FieldElement](interfaces/fieldelement.md)
-- [FieldType](interfaces/fieldtype.md)
-- [Form](interfaces/form.md)
-- [Result](interfaces/result.md)
+- [ActionFunction](interfaces/ActionFunction.md)
+- [Actions](interfaces/Actions.md)
+- [Constraint](interfaces/Constraint.md)
+- [Field](interfaces/Field.md)
+- [FieldElement](interfaces/FieldElement.md)
+- [FieldType](interfaces/FieldType.md)
+- [Result](interfaces/Result.md)
 
-### Type aliases
+### Type Aliases
 
 - [ActionImpl](README.md#actionimpl)
 - [FieldTypeName](README.md#fieldtypename)
+- [Form](README.md#form)
 - [ValidateMessages](README.md#validatemessages)
+- [Validator](README.md#validator)
 
 ### Functions
 
 - [ResultContext](README.md#resultcontext)
+- [addValidator](README.md#addvalidator)
 - [getFieldType](README.md#getfieldtype)
 - [oneTimeField](README.md#onetimefield)
+- [setGlobalErrorListener](README.md#setglobalerrorlistener)
 - [useActions](README.md#useactions)
 - [useCachingTopic](README.md#usecachingtopic)
 - [useForm](README.md#useform)
@@ -33,93 +36,196 @@
 - [useResult](README.md#useresult)
 - [useTopic](README.md#usetopic)
 
-## Type aliases
+## Type Aliases
 
 ### ActionImpl
 
-Ƭ **ActionImpl**<Params\>: (`p?`: Params) => *Promise*<void\>
+Ƭ **ActionImpl**<`Params`\>: (`p?`: `Params`) => `Promise`<`unknown`\>
 
-Action implementations should be async and accept at most one parameter
-
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
 | `Params` |
 
-#### Type declaration:
+#### Type declaration
 
-▸ (`p?`: Params): *Promise*<void\>
+▸ (`p?`): `Promise`<`unknown`\>
 
-#### Parameters:
+Action implementations should be async and accept at most one parameter
+
+##### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `p?` | Params |
+| `p?` | `Params` |
 
-**Returns:** *Promise*<void\>
+##### Returns
 
-Defined in: [useActions.ts:76](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useActions.ts#L76)
+`Promise`<`unknown`\>
+
+#### Defined in
+
+[useActions.ts:77](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useActions.ts#L77)
 
 ___
 
 ### FieldTypeName
 
-Ƭ **FieldTypeName**: keyof *typeof* fieldTypes & *string*
+Ƭ **FieldTypeName**: keyof typeof `fieldTypes` & `string`
 
-Names of pre-defined [FieldType](interfaces/fieldtype.md)s
+Names of pre-defined [FieldType](interfaces/FieldType.md)s
 
-Defined in: [fieldTypes.ts:8](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/fieldTypes.ts#L8)
+#### Defined in
+
+[fieldTypes.ts:8](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/fieldTypes.ts#L8)
+
+___
+
+### Form
+
+Ƭ **Form**<`Data`\>: `Object`
+
+Form state + form actions (see [Actions](interfaces/Actions.md),
+
+**`Link`**
+
+[useActions](README.md#useactions))
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `Data` |
+
+#### Type declaration
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `action` | <Params\>(`impl`: `FormActionImpl`<`Data`, `Params`\>, `options?`: { `validate`: `boolean`  }) => [`ActionFunction`](interfaces/ActionFunction.md)<`Params`\> | Create form action |
+| `data` | `Data` | Current data (derived from initial data + overriden in the input fields) |
+| `error` | `string` \| `undefined` | Form action error |
+| `fields` | `Fields`<`Data`\> | Hash of form fields |
+| `progress` | `boolean` | True if any of the form actions are in progress now |
+| `updateValues` | (`update`: `Partial`<`Values`<`Data`\>\>) => `void` | Programmatically change form field values. Triggers validation for updated fields |
+
+#### Defined in
+
+[useForm.tsx:307](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L307)
 
 ___
 
 ### ValidateMessages
 
-Ƭ **ValidateMessages**: *typeof* enValidateMessages
+Ƭ **ValidateMessages**: typeof `enValidateMessages`
 
-Defined in: [validate.ts:43](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/validate.ts#L43)
+#### Defined in
+
+[validate.ts:54](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/validate.ts#L54)
+
+___
+
+### Validator
+
+Ƭ **Validator**: (`value`: `string`, `constraint`: `any`) => `string`
+
+#### Type declaration
+
+▸ (`value`, `constraint`): `string`
+
+Function that could be called to validate form values.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `value` | `string` | form field value |
+| `constraint` | `any` | value of the field component property |
+
+##### Returns
+
+`string`
+
+null if not errors or error message is validator fails
+
+#### Defined in
+
+[validate.ts:63](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/validate.ts#L63)
 
 ## Functions
 
 ### ResultContext
 
-▸ **ResultContext**(`props`: ResultContextProps): *Element*
+▸ **ResultContext**(`props`): `Element`
 
-Install [Result](interfaces/result.md), used to track action results
+Install [Result](interfaces/Result.md), used to track action results
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `props` | ResultContextProps |
+| `props` | `ResultContextProps` |
 
-**Returns:** *Element*
+#### Returns
 
-Defined in: [result.tsx:24](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/result.tsx#L24)
+`Element`
+
+#### Defined in
+
+[result.tsx:24](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/result.tsx#L24)
+
+___
+
+### addValidator
+
+▸ **addValidator**(`propertyKey`, `validator`): `void`
+
+Register new custom validator.
+Registered validators could be used by referencing propertyKeys
+Be careful not to use propertyKeys that could mess with other propeties, ie `children`.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `propertyKey` | `string` | property name to request vaidation, ie `amount`: `<Input required amount field={form.amount}/>` |
+| `validator` | [`Validator`](README.md#validator) | function that will run validation |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[validate.ts:73](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/validate.ts#L73)
 
 ___
 
 ### getFieldType
 
-▸ **getFieldType**(`typeName`: [*FieldTypeName*](README.md#fieldtypename)): [*FieldType*](interfaces/fieldtype.md)<unknown\>
+▸ **getFieldType**(`typeName`): [`FieldType`](interfaces/FieldType.md)<`unknown`\>
 
 Return FieldType from its name
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `typeName` | [*FieldTypeName*](README.md#fieldtypename) |
+| `typeName` | `string` |
 
-**Returns:** [*FieldType*](interfaces/fieldtype.md)<unknown\>
+#### Returns
 
-Defined in: [fieldTypes.ts:33](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/fieldTypes.ts#L33)
+[`FieldType`](interfaces/FieldType.md)<`unknown`\>
+
+#### Defined in
+
+[fieldTypes.ts:38](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/fieldTypes.ts#L38)
 
 ___
 
 ### oneTimeField
 
-▸ **oneTimeField**(`accept`: (`value`: *string*) => *void*, `value?`: *string*): [*Field*](interfaces/field.md)
+▸ **oneTimeField**(`accept`, `value?`): [`Field`](interfaces/Field.md)
 
 Create one-time field to be used with input components instead of `useForm`.
 Typical use case - inline edit:
@@ -135,22 +241,46 @@ Typical use case - inline edit:
 />
 ```
 
-#### Parameters:
+#### Parameters
 
 | Name | Type | Default value | Description |
 | :------ | :------ | :------ | :------ |
-| `accept` | (`value`: *string*) => *void* | - | callback to called when value changes |
-| `value` | *string* | "" | current value |
+| `accept` | (`value`: `string`) => `void` | `undefined` | callback to called when value changes |
+| `value` | `string` | `""` | current value |
 
-**Returns:** [*Field*](interfaces/field.md)
+#### Returns
 
-Defined in: [utils.tsx:32](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/utils.tsx#L32)
+[`Field`](interfaces/Field.md)
+
+#### Defined in
+
+[utils.tsx:32](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/utils.tsx#L32)
+
+___
+
+### setGlobalErrorListener
+
+▸ **setGlobalErrorListener**(`listener`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `listener` | (`e`: `any`) => `void` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[useActions.ts:90](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useActions.ts#L90)
 
 ___
 
 ### useActions
 
-▸ **useActions**(): [*Actions*](interfaces/actions.md)
+▸ **useActions**(): [`Actions`](interfaces/Actions.md)
 
 Wraps async functions invocation (ie remote method) in try/catch/finally,
 maintaining `progress` and `error` state.
@@ -175,17 +305,21 @@ In addition, action functions calls preventDefault for its first parameter, whic
 <a href="#" onClick={create}>Create</a>
 ```
 
-**Returns:** [*Actions*](interfaces/actions.md)
+#### Returns
 
-Defined in: [useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useActions.ts#L27)
+[`Actions`](interfaces/Actions.md)
+
+#### Defined in
+
+[useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useActions.ts#L27)
 
 ___
 
 ### useCachingTopic
 
-▸ **useCachingTopic**<Data, Params, TriggerData\>(`original`: *Topic*<Data, Params, TriggerData\>): *Topic*<Data, Params, TriggerData\>
+▸ **useCachingTopic**<`Data`, `Params`, `TriggerData`\>(`original`): `Topic`<`Data`, `Params`, `TriggerData`\>
 
-Create a new {@link push-rpc/core.Topic} that will cache invocations to Topic.get.
+Create a new push-rpc/core.Topic that will cache invocations to Topic.get.
 
 To be used when multiple consumers use the same data from server:
 ```
@@ -197,29 +331,33 @@ const folders = useCachingTopic(services.folders)
 <Select label="To" field={fields.to} topic={folders}/>
 ```
 
-#### Type parameters:
-
-| Name | Default |
-| :------ | :------ |
-| `Data` | - |
-| `Params` | {} |
-| `TriggerData` | Data |
-
-#### Parameters:
+#### Type parameters
 
 | Name | Type |
 | :------ | :------ |
-| `original` | *Topic*<Data, Params, TriggerData\> |
+| `Data` | `Data` |
+| `Params` | {} |
+| `TriggerData` | `Data` |
 
-**Returns:** *Topic*<Data, Params, TriggerData\>
+#### Parameters
 
-Defined in: [useCachingTopic.ts:19](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useCachingTopic.ts#L19)
+| Name | Type |
+| :------ | :------ |
+| `original` | `Topic`<`Data`, `Params`, `TriggerData`\> |
+
+#### Returns
+
+`Topic`<`Data`, `Params`, `TriggerData`\>
+
+#### Defined in
+
+[useCachingTopic.ts:19](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useCachingTopic.ts#L19)
 
 ___
 
 ### useForm
 
-▸ **useForm**<Data\>(`initialData?`: Data): [*Form*](interfaces/form.md)<Data\>
+▸ **useForm**<`Data`\>(`dataInitializer?`): [`Form`](README.md#form)<`Data`\>
 
 Store various state related to form processing.
 
@@ -252,11 +390,11 @@ return (
 )
 ```
 
-Form consists of multiple [Field](interfaces/field.md)s. Each field has a value and a validation error. Each field is linked to a
-[FieldElement](interfaces/fieldelement.md). [FieldElement](interfaces/fieldelement.md) is implemented by input component (Input in an example above), and contains information about field's [FieldType](interfaces/fieldtype.md)
-and validation [Constraint](interfaces/constraint.md)s.
+Form consists of multiple [Field](interfaces/Field.md)s. Each field has a value and a validation error. Each field is linked to a
+[FieldElement](interfaces/FieldElement.md). [FieldElement](interfaces/FieldElement.md) is implemented by input component (Input in an example above), and contains information about field's [FieldType](interfaces/FieldType.md)
+and validation [Constraint](interfaces/Constraint.md)s.
 
-Field value is a string. Form data can be of different types, and [FieldType](interfaces/fieldtype.md) defines how to convert form data to a field value and back.
+Field value is a string. Form data can be of different types, and [FieldType](interfaces/FieldType.md) defines how to convert form data to a field value and back.
 There are four predefined [FieldTypeName](README.md#fieldtypename)s. Custom field types can also be used.
 
 Input components are implemented in a separate libraries, for example [@use-ui/bootstrap3](https://github.com/vasyas/use-ui-bootstrap3).
@@ -265,67 +403,89 @@ In addition, form creates a set of action, see [useActions](README.md#useactions
 1) Action implementation receives current form data as the first param
 2) Actions are not launched if form is invalid.
 
-#### Type parameters:
+To set initial data for the form fields, pass data as object:
+```
+const form = useForm<LoginData>({login: "my-login"})
+```
+
+or use async loader function:
+```
+const form = useForm<LoginData>(async () => await fetchInitialData(params))
+```
+
+#### Type parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `Data` | *Record*<string, unknown\> | Type of form's data. Form data items can be of any type. Type should be convertible to a string using [FieldType](interfaces/fieldtype.md) specified via input component. |
+| `Data` | extends `Record`<`string`, `unknown`\> | Type of form's data. Form data items can be of any type. Type should be convertible to a string using [FieldType](interfaces/FieldType.md) specified via input component. |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `initialData?` | Data | initial data for field values. useForm supports updating it after initial mount, so it can be loaded async. |
+| `dataInitializer?` | `Data` \| () => `Promise`<`Data`\> | initial data for field values. Either object or async loader functions |
 
-**Returns:** [*Form*](interfaces/form.md)<Data\>
+#### Returns
 
-Defined in: [useForm.tsx:54](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useForm.tsx#L54)
+[`Form`](README.md#form)<`Data`\>
+
+#### Defined in
+
+[useForm.tsx:64](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L64)
 
 ___
 
 ### usePrevious
 
-▸ **usePrevious**<T\>(`value`: T): T
+▸ **usePrevious**<`T`\>(`value`): `undefined` \| `T`
 
 Return value from previous render.
 
-#### Type parameters:
+#### Type parameters
 
 | Name |
 | :------ |
 | `T` |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `value` | T |
+| `value` | `T` |
 
-**Returns:** T
+#### Returns
 
-Defined in: [utils.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/utils.tsx#L6)
+`undefined` \| `T`
+
+#### Defined in
+
+[utils.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/utils.tsx#L6)
 
 ___
 
 ### useResult
 
-▸ **useResult**(): [*Result*](interfaces/result.md)
+▸ **useResult**(): [`Result`](interfaces/Result.md) \| `undefined`
 
-Return global [Result](interfaces/result.md), installed via ResultContext.
+Return global [Result](interfaces/Result.md), installed via ResultContext.
 
 Result is used to set/clear operation results.
 
 Result is auto-cleared on history change.
 
-**Returns:** [*Result*](interfaces/result.md)
+#### Returns
 
-Defined in: [result.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/result.tsx#L13)
+[`Result`](interfaces/Result.md) \| `undefined`
+
+#### Defined in
+
+[result.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/result.tsx#L13)
 
 ___
 
 ### useTopic
 
-▸ **useTopic**<Data, Params\>(`topic`: *Topic*<Data, Params\>, `params`: Params, `def?`: Data): *object*
+▸ **useTopic**<`Data`, `Params`\>(`topic`, `params`, `def?`, `opts?`): `Object`
 
 Async load data from backend using [push-rpc](https://github.com/vasyas/push-rpc).
 
@@ -344,26 +504,31 @@ If `params` are falsy, no subscription will be performed. This is useful to skip
 change topic will be resubscribed. When re-subscribing, `useTopic` will convert params to JSON strings, so it is ok
 to use inline objects as params.
 
-#### Type parameters:
+#### Type parameters
 
 | Name | Description |
 | :------ | :------ |
 | `Data` | Data type that topic should return |
 | `Params` | Type of parameters that topic should accept |
 
-#### Parameters:
+#### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `topic` | *Topic*<Data, Params\> | Push-RPC Topic to load data |
-| `params` | Params | params to send to topic |
-| `def?` | Data | default value to use until data is loaded, undefined by default |
+| `topic` | `Topic`<`Data`, `Params`, `Data`\> | Push-RPC Topic to load data |
+| `params` | `undefined` \| ``null`` \| ``false`` \| `Params` | params to send to topic |
+| `def?` | `Data` | default value to use until data is loaded, undefined by default |
+| `opts?` | `Options` | Invocation options |
 
-**Returns:** *object*
+#### Returns
+
+`Object`
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `data` | Data | Loaded data or default value |
-| `loading` | *boolean* | True if loading request is in progress |
+| `data` | `Data` | Loaded data or default value |
+| `loading` | `boolean` | True if loading request is in progress |
 
-Defined in: [useTopic.tsx:30](https://github.com/vasyas/use-ui-hooks/blob/a3efc87/src/useTopic.tsx#L30)
+#### Defined in
+
+[useTopic.tsx:32](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useTopic.tsx#L32)
