@@ -33,6 +33,7 @@
 - [useCachingTopic](README.md#usecachingtopic)
 - [useForm](README.md#useform)
 - [usePrevious](README.md#useprevious)
+- [useRefetchingTopic](README.md#userefetchingtopic)
 - [useResult](README.md#useresult)
 - [useTopic](README.md#usetopic)
 
@@ -66,7 +67,7 @@ Action implementations should be async and accept at most one parameter
 
 #### Defined in
 
-[useActions.ts:77](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useActions.ts#L77)
+[useActions.ts:77](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useActions.ts#L77)
 
 ___
 
@@ -78,7 +79,7 @@ Names of pre-defined [FieldType](interfaces/FieldType.md)s
 
 #### Defined in
 
-[fieldTypes.ts:8](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/fieldTypes.ts#L8)
+[fieldTypes.ts:8](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/fieldTypes.ts#L8)
 
 ___
 
@@ -111,7 +112,7 @@ Form state + form actions (see [Actions](interfaces/Actions.md),
 
 #### Defined in
 
-[useForm.tsx:307](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L307)
+[useForm.tsx:307](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useForm.tsx#L307)
 
 ___
 
@@ -121,7 +122,7 @@ ___
 
 #### Defined in
 
-[validate.ts:54](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/validate.ts#L54)
+[validate.ts:54](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/validate.ts#L54)
 
 ___
 
@@ -150,7 +151,7 @@ null if not errors or error message is validator fails
 
 #### Defined in
 
-[validate.ts:63](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/validate.ts#L63)
+[validate.ts:63](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/validate.ts#L63)
 
 ## Functions
 
@@ -172,7 +173,7 @@ Install [Result](interfaces/Result.md), used to track action results
 
 #### Defined in
 
-[result.tsx:24](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/result.tsx#L24)
+[result.tsx:24](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/result.tsx#L24)
 
 ___
 
@@ -197,7 +198,7 @@ Be careful not to use propertyKeys that could mess with other propeties, ie `chi
 
 #### Defined in
 
-[validate.ts:73](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/validate.ts#L73)
+[validate.ts:73](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/validate.ts#L73)
 
 ___
 
@@ -219,7 +220,7 @@ Return FieldType from its name
 
 #### Defined in
 
-[fieldTypes.ts:38](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/fieldTypes.ts#L38)
+[fieldTypes.ts:38](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/fieldTypes.ts#L38)
 
 ___
 
@@ -254,7 +255,7 @@ Typical use case - inline edit:
 
 #### Defined in
 
-[utils.tsx:32](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/utils.tsx#L32)
+[utils.tsx:32](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/utils.tsx#L32)
 
 ___
 
@@ -274,7 +275,7 @@ ___
 
 #### Defined in
 
-[useActions.ts:90](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useActions.ts#L90)
+[useActions.ts:90](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useActions.ts#L90)
 
 ___
 
@@ -311,7 +312,7 @@ In addition, action functions calls preventDefault for its first parameter, whic
 
 #### Defined in
 
-[useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useActions.ts#L27)
+[useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useActions.ts#L27)
 
 ___
 
@@ -351,7 +352,7 @@ const folders = useCachingTopic(services.folders)
 
 #### Defined in
 
-[useCachingTopic.ts:19](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useCachingTopic.ts#L19)
+[useCachingTopic.ts:19](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useCachingTopic.ts#L19)
 
 ___
 
@@ -431,7 +432,7 @@ const form = useForm<LoginData>(async () => await fetchInitialData(params))
 
 #### Defined in
 
-[useForm.tsx:64](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L64)
+[useForm.tsx:64](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useForm.tsx#L64)
 
 ___
 
@@ -459,7 +460,64 @@ Return value from previous render.
 
 #### Defined in
 
-[utils.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/utils.tsx#L6)
+[utils.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/utils.tsx#L6)
+
+___
+
+### useRefetchingTopic
+
+▸ **useRefetchingTopic**<`Data`, `Params`\>(`topic`, `params`, `def?`, `opts?`): `Object`
+
+Async load data from backend using [push-rpc](https://github.com/vasyas/push-rpc).
+
+```typescript
+const {data, refetch} = useRefetchingTopic(services.client, {
+  pk: session.user.clientPk
+})
+
+const onButtonClick = () => {
+ refetch()
+}
+```
+
+In this example `useRefetchingTopic` will subscribe to topic `services.client` on mount and
+will unsubscribe from it on unmount (much like useEffect works). On every click on button, data will be refetched.
+
+If `params` are falsy, no subscription will be performed. This is useful to skip subscription until "parent" data is loaded.
+
+`useRefetchingTopic` will re-subscribe topic on changing `refetch` by calling `refetch()`. In the example above, when `refetch()` is called
+topic will be resubscribed. When re-subscribing, `useRefetchingTopic` will convert params to JSON strings, so it is ok
+to use inline objects as params.
+
+#### Type parameters
+
+| Name | Description |
+| :------ | :------ |
+| `Data` | Data type that topic should return |
+| `Params` | Type of parameters that topic should accept |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `topic` | `Topic`<`Data`, `Params`, `Data`\> | Push-RPC Topic to load data |
+| `params` | `undefined` \| ``null`` \| ``false`` \| `Params` | params to send to topic |
+| `def?` | `Data` | default value to use until data is loaded, undefined by default |
+| `opts?` | `Options` | Invocation options |
+
+#### Returns
+
+`Object`
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | `Data` | Loaded data or default value |
+| `loading` | `boolean` | True if loading request is in progress |
+| `refetch` | () => `void` | Function to refetch data |
+
+#### Defined in
+
+[useRefetchingTopic.ts:36](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useRefetchingTopic.ts#L36)
 
 ___
 
@@ -479,7 +537,7 @@ Result is auto-cleared on history change.
 
 #### Defined in
 
-[result.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/result.tsx#L13)
+[result.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/result.tsx#L13)
 
 ___
 
@@ -531,4 +589,4 @@ to use inline objects as params.
 
 #### Defined in
 
-[useTopic.tsx:32](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useTopic.tsx#L32)
+[useTopic.tsx:32](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useTopic.tsx#L32)

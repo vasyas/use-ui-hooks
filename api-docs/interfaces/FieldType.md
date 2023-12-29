@@ -35,7 +35,7 @@ Convert form data value to a string and back
 
 #### Defined in
 
-[fieldTypes.ts:3](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/fieldTypes.ts#L3)
+[fieldTypes.ts:3](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/fieldTypes.ts#L3)
 
 ___
 
@@ -55,4 +55,4 @@ ___
 
 #### Defined in
 
-[fieldTypes.ts:4](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/fieldTypes.ts#L4)
+[fieldTypes.ts:4](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/fieldTypes.ts#L4)
