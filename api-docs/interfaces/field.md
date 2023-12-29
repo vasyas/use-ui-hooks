@@ -30,7 +30,7 @@ This object is passed into input components
 
 #### Defined in
 
-[useForm.tsx:343](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L343)
+[useForm.tsx:343](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useForm.tsx#L343)
 
 ___
 
@@ -44,7 +44,7 @@ ___
 
 #### Defined in
 
-[useForm.tsx:337](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L337)
+[useForm.tsx:337](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useForm.tsx#L337)
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-[useForm.tsx:339](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L339)
+[useForm.tsx:339](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useForm.tsx#L339)
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 #### Defined in
 
-[useForm.tsx:341](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L341)
+[useForm.tsx:341](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useForm.tsx#L341)
 
 ___
 
@@ -86,7 +86,7 @@ ___
 
 #### Defined in
 
-[useForm.tsx:342](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L342)
+[useForm.tsx:342](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useForm.tsx#L342)
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 #### Defined in
 
-[useForm.tsx:338](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L338)
+[useForm.tsx:338](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useForm.tsx#L338)
 
 ___
 
@@ -126,4 +126,4 @@ ___
 
 #### Defined in
 
-[useForm.tsx:340](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/useForm.tsx#L340)
+[useForm.tsx:340](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useForm.tsx#L340)

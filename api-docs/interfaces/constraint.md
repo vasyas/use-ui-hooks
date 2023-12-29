@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[validate.ts:3](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/validate.ts#L3)
+[validate.ts:3](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/validate.ts#L3)
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 #### Defined in
 
-[validate.ts:5](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/validate.ts#L5)
+[validate.ts:5](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/validate.ts#L5)
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 #### Defined in
 
-[validate.ts:4](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/validate.ts#L4)
+[validate.ts:4](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/validate.ts#L4)
 
 ___
 
@@ -49,4 +49,4 @@ ___
 
 #### Defined in
 
-[validate.ts:2](https://github.com/vasyas/use-ui-hooks/blob/228e17b/src/validate.ts#L2)
+[validate.ts:2](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/validate.ts#L2)
