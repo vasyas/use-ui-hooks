@@ -46,8 +46,8 @@ export function useTopic<Data, Params>(
   const [loading, setLoading] = useState<boolean>(true)
 
   const receiveData = useCallback((data: Data) => {
-    setLoading(false)
     setData(data)
+    setLoading(false)
   }, [])
 
   useEffect(() => {
