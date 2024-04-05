@@ -25,7 +25,7 @@ Last action error
 
 #### Defined in
 
-[useActions.ts:69](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useActions.ts#L69)
+[useActions.ts:68](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useActions.ts#L68)
 
 ___
 
@@ -37,7 +37,7 @@ True if any of the created actions are in progress
 
 #### Defined in
 
-[useActions.ts:73](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useActions.ts#L73)
+[useActions.ts:72](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useActions.ts#L72)
 
 ## Methods
 
@@ -65,4 +65,4 @@ Create action function from implementation
 
 #### Defined in
 
-[useActions.ts:71](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useActions.ts#L71)
+[useActions.ts:70](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useActions.ts#L70)
