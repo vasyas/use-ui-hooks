@@ -42,9 +42,8 @@ export function useActions(): Actions {
         setProgress(thisActionIndex)
         setError(undefined)
 
-        await impl(params)
+        await middleware(e!, impl as any, params)
       } catch (e: any) {
-        globalErrorListener(e)
         setError(e.message)
       } finally {
         setProgress(undefined)
@@ -85,8 +84,12 @@ export interface ActionFunction<P> {
 
 type Event = {preventDefault(): void}
 
-let globalErrorListener: (e: any) => void = () => {}
-
-export function setGlobalErrorListener(listener: (e: any) => void) {
-  globalErrorListener = listener
+let middleware: Middleware = (e: Event, action: ActionImpl<unknown>, param: unknown) => {
+  return action(param)
 }
+
+export function setActionsMiddleware(m: Middleware) {
+  middleware = m
+}
+
+type Middleware = (e: any, action: ActionImpl<unknown>, param: unknown) => Promise<unknown>

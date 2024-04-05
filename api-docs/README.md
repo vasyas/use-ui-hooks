@@ -28,9 +28,8 @@
 - [addValidator](README.md#addvalidator)
 - [getFieldType](README.md#getfieldtype)
 - [oneTimeField](README.md#onetimefield)
-- [setGlobalErrorListener](README.md#setglobalerrorlistener)
+- [setActionsMiddleware](README.md#setactionsmiddleware)
 - [useActions](README.md#useactions)
-- [useCachingTopic](README.md#usecachingtopic)
 - [useForm](README.md#useform)
 - [usePrevious](README.md#useprevious)
 - [useRefetchingTopic](README.md#userefetchingtopic)
@@ -67,7 +66,7 @@ Action implementations should be async and accept at most one parameter
 
 #### Defined in
 
-[useActions.ts:77](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useActions.ts#L77)
+[useActions.ts:76](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useActions.ts#L76)
 
 ___
 
@@ -79,7 +78,7 @@ Names of pre-defined [FieldType](interfaces/FieldType.md)s
 
 #### Defined in
 
-[fieldTypes.ts:8](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/fieldTypes.ts#L8)
+[fieldTypes.ts:8](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/fieldTypes.ts#L8)
 
 ___
 
@@ -112,7 +111,7 @@ Form state + form actions (see [Actions](interfaces/Actions.md),
 
 #### Defined in
 
-[useForm.tsx:307](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useForm.tsx#L307)
+[useForm.tsx:307](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useForm.tsx#L307)
 
 ___
 
@@ -122,7 +121,7 @@ ___
 
 #### Defined in
 
-[validate.ts:54](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/validate.ts#L54)
+[validate.ts:54](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/validate.ts#L54)
 
 ___
 
@@ -151,7 +150,7 @@ null if not errors or error message is validator fails
 
 #### Defined in
 
-[validate.ts:63](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/validate.ts#L63)
+[validate.ts:63](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/validate.ts#L63)
 
 ## Functions
 
@@ -173,7 +172,7 @@ Install [Result](interfaces/Result.md), used to track action results
 
 #### Defined in
 
-[result.tsx:24](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/result.tsx#L24)
+[result.tsx:24](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/result.tsx#L24)
 
 ___
 
@@ -198,7 +197,7 @@ Be careful not to use propertyKeys that could mess with other propeties, ie `chi
 
 #### Defined in
 
-[validate.ts:73](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/validate.ts#L73)
+[validate.ts:73](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/validate.ts#L73)
 
 ___
 
@@ -220,7 +219,7 @@ Return FieldType from its name
 
 #### Defined in
 
-[fieldTypes.ts:38](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/fieldTypes.ts#L38)
+[fieldTypes.ts:38](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/fieldTypes.ts#L38)
 
 ___
 
@@ -255,19 +254,19 @@ Typical use case - inline edit:
 
 #### Defined in
 
-[utils.tsx:32](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/utils.tsx#L32)
+[utils.tsx:32](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/utils.tsx#L32)
 
 ___
 
-### setGlobalErrorListener
+### setActionsMiddleware
 
-▸ **setGlobalErrorListener**(`listener`): `void`
+▸ **setActionsMiddleware**(`m`): `void`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `listener` | (`e`: `any`) => `void` |
+| `m` | `Middleware` |
 
 #### Returns
 
@@ -275,7 +274,7 @@ ___
 
 #### Defined in
 
-[useActions.ts:90](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useActions.ts#L90)
+[useActions.ts:91](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useActions.ts#L91)
 
 ___
 
@@ -312,47 +311,7 @@ In addition, action functions calls preventDefault for its first parameter, whic
 
 #### Defined in
 
-[useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useActions.ts#L27)
-
-___
-
-### useCachingTopic
-
-▸ **useCachingTopic**<`Data`, `Params`, `TriggerData`\>(`original`): `Topic`<`Data`, `Params`, `TriggerData`\>
-
-Create a new push-rpc/core.Topic that will cache invocations to Topic.get.
-
-To be used when multiple consumers use the same data from server:
-```
-const {fields} = useForm()
-const folders = useCachingTopic(services.folders)
-..
-<div>Move files</div>
-<Select label="From" field={fields.from} topic={folders}/>
-<Select label="To" field={fields.to} topic={folders}/>
-```
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `Data` | `Data` |
-| `Params` | {} |
-| `TriggerData` | `Data` |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `original` | `Topic`<`Data`, `Params`, `TriggerData`\> |
-
-#### Returns
-
-`Topic`<`Data`, `Params`, `TriggerData`\>
-
-#### Defined in
-
-[useCachingTopic.ts:19](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useCachingTopic.ts#L19)
+[useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useActions.ts#L27)
 
 ___
 
@@ -432,7 +391,7 @@ const form = useForm<LoginData>(async () => await fetchInitialData(params))
 
 #### Defined in
 
-[useForm.tsx:64](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useForm.tsx#L64)
+[useForm.tsx:64](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useForm.tsx#L64)
 
 ___
 
@@ -460,7 +419,7 @@ Return value from previous render.
 
 #### Defined in
 
-[utils.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/utils.tsx#L6)
+[utils.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/utils.tsx#L6)
 
 ___
 
@@ -468,42 +427,21 @@ ___
 
 ▸ **useRefetchingTopic**<`Data`, `Params`\>(`topic`, `params`, `def?`, `opts?`): `Object`
 
-Async load data from backend using [push-rpc](https://github.com/vasyas/push-rpc).
-
-```typescript
-const {data, refetch} = useRefetchingTopic(services.client, {
-  pk: session.user.clientPk
-})
-
-const onButtonClick = () => {
- refetch()
-}
-```
-
-In this example `useRefetchingTopic` will subscribe to topic `services.client` on mount and
-will unsubscribe from it on unmount (much like useEffect works). On every click on button, data will be refetched.
-
-If `params` are falsy, no subscription will be performed. This is useful to skip subscription until "parent" data is loaded.
-
-`useRefetchingTopic` will re-subscribe topic on changing `refetch` by calling `refetch()`. In the example above, when `refetch()` is called
-topic will be resubscribed. When re-subscribing, `useRefetchingTopic` will convert params to JSON strings, so it is ok
-to use inline objects as params.
-
 #### Type parameters
 
-| Name | Description |
-| :------ | :------ |
-| `Data` | Data type that topic should return |
-| `Params` | Type of parameters that topic should accept |
+| Name |
+| :------ |
+| `Data` |
+| `Params` |
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `topic` | `Topic`<`Data`, `Params`, `Data`\> | Push-RPC Topic to load data |
-| `params` | `undefined` \| ``null`` \| ``false`` \| `Params` | params to send to topic |
-| `def?` | `Data` | default value to use until data is loaded, undefined by default |
-| `opts?` | `Options` | Invocation options |
+| Name | Type |
+| :------ | :------ |
+| `topic` | `Topic`<`Data`, `Params`\> |
+| `params` | `undefined` \| ``null`` \| ``false`` \| `Params` |
+| `def?` | `Data` |
+| `opts?` | `Options` |
 
 #### Returns
 
@@ -517,7 +455,7 @@ to use inline objects as params.
 
 #### Defined in
 
-[useRefetchingTopic.ts:36](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useRefetchingTopic.ts#L36)
+[useRefetchingTopic.ts:4](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useRefetchingTopic.ts#L4)
 
 ___
 
@@ -537,7 +475,7 @@ Result is auto-cleared on history change.
 
 #### Defined in
 
-[result.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/result.tsx#L13)
+[result.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/result.tsx#L13)
 
 ___
 
@@ -545,38 +483,21 @@ ___
 
 ▸ **useTopic**<`Data`, `Params`\>(`topic`, `params`, `def?`, `opts?`): `Object`
 
-Async load data from backend using [push-rpc](https://github.com/vasyas/push-rpc).
-
-```typescript
-const {data} = useTopic(services.client, {
-  pk: session.user.clientPk
-})
-```
-
-In this example `useTopic` will subscribe to topic `services.client` on mount and
-will unsubscribe from it on unmount (much like useEffect works).
-
-If `params` are falsy, no subscription will be performed. This is useful to skip subscription until "parent" data is loaded.
-
-`useTopic` will re-subscribe topic on changing topic parameters. In example above, when `session.user.clientPk`
-change topic will be resubscribed. When re-subscribing, `useTopic` will convert params to JSON strings, so it is ok
-to use inline objects as params.
-
 #### Type parameters
 
-| Name | Description |
-| :------ | :------ |
-| `Data` | Data type that topic should return |
-| `Params` | Type of parameters that topic should accept |
+| Name |
+| :------ |
+| `Data` |
+| `Params` |
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `topic` | `Topic`<`Data`, `Params`, `Data`\> | Push-RPC Topic to load data |
-| `params` | `undefined` \| ``null`` \| ``false`` \| `Params` | params to send to topic |
-| `def?` | `Data` | default value to use until data is loaded, undefined by default |
-| `opts?` | `Options` | Invocation options |
+| Name | Type |
+| :------ | :------ |
+| `topic` | `Topic`<`Data`, `Params`\> |
+| `params` | `undefined` \| ``null`` \| ``false`` \| `Params` |
+| `def?` | `Data` |
+| `opts?` | `Options` |
 
 #### Returns
 
@@ -589,4 +510,4 @@ to use inline objects as params.
 
 #### Defined in
 
-[useTopic.tsx:32](https://github.com/vasyas/use-ui-hooks/blob/1e890cd/src/useTopic.tsx#L32)
+[useTopic.tsx:4](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useTopic.tsx#L4)

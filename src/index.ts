@@ -1,4 +1,4 @@
-export {useActions, ActionFunction, Actions, ActionImpl, setGlobalErrorListener} from "./useActions"
+export {useActions, ActionFunction, Actions, ActionImpl, setActionsMiddleware} from "./useActions"
 export {ResultContext, useResult, Result} from "./result"
 export {useTopic} from "./useTopic"
 export {useForm, Field, FieldElement, Form} from "./useForm"
