@@ -3,7 +3,7 @@ import {CallOptions, Topic} from "./topics"
 
 export function useTopic<Data, Params>(
   topic: Topic<Data, Params>,
-  params: Params | false | null | undefined = {} as any,
+  params: Params | false | null | undefined,
   def?: Data,
   opts?: Options
 ): {
@@ -15,7 +15,7 @@ export function useTopic<Data, Params>(
   const {resetOnChange, ...callOpts} = opts || {}
 
   const [data, setData] = useState<Data>(def as any) // intentionally breaking type-safety here for convenience
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(true)
 
   const receiveData = useCallback((data: Data) => {
     setData(data)
