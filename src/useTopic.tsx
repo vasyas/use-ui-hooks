@@ -12,7 +12,7 @@ export function useTopic<Data, Params>(
   /** True if loading request is in progress */
   loading: boolean
 } {
-  const {resetOnChange, ...callOpts} = opts || {}
+  const {resetOnChange, subscribe = true, ...callOpts} = opts || {}
 
   const [data, setData] = useState<Data>(def as any) // intentionally breaking type-safety here for convenience
   const [loading, setLoading] = useState<boolean>(true)
@@ -22,18 +22,30 @@ export function useTopic<Data, Params>(
     setLoading(false)
   }, [])
 
+  const errorHandler = useCallback((e: any) => {
+    // ignore error, just mark loading ended
+    setLoading(false)
+  }, [])
+
   useEffect(() => {
     if (params) {
       setLoading(true)
-      if (callOpts.timeout) {
-        topic.subscribe(receiveData, params, new CallOptions({timeout: callOpts.timeout}))
+
+      if (subscribe) {
+        if (callOpts.timeout) {
+          topic
+            .subscribe(receiveData, params, new CallOptions({timeout: callOpts.timeout}))
+            .catch(errorHandler)
+        } else {
+          topic.subscribe(receiveData, params).catch(errorHandler)
+        }
       } else {
-        topic.subscribe(receiveData, params)
+        topic(params).then(receiveData).catch(errorHandler)
       }
     }
 
     return () => {
-      if (params) {
+      if (subscribe && params) {
         topic.unsubscribe(receiveData, params)
       }
 
@@ -49,4 +61,5 @@ export function useTopic<Data, Params>(
 type Options = {
   resetOnChange?: boolean
   timeout?: number
+  subscribe?: boolean
 }
