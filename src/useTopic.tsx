@@ -14,8 +14,10 @@ export function useTopic<Data, Params>(
 } {
   const {resetOnChange, subscribe = true, ...callOpts} = opts || {}
 
-  const [data, setData] = useState<Data>(def as any) // intentionally breaking type-safety here for convenience
-  const [loading, setLoading] = useState<boolean>(true)
+  const cachedData = params ? getCachedTopic(topic.itemName, [params]) : undefined
+
+  const [data, setData] = useState<Data>(cachedData ?? (def as any)) // intentionally breaking type-safety here for convenience
+  const [loading, setLoading] = useState<boolean>(!cachedData)
 
   const receiveData = useCallback((data: Data) => {
     setData(data)
@@ -62,4 +64,12 @@ type Options = {
   resetOnChange?: boolean
   timeout?: number
   subscribe?: boolean
+}
+
+export type GetCachedTopic = (itemName: string, parameters: unknown[]) => unknown
+
+let getCachedTopic: GetCachedTopic = () => undefined
+
+export function setTopicCache(t: GetCachedTopic) {
+  getCachedTopic = t
 }

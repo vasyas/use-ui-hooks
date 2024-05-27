@@ -1,6 +1,7 @@
 export type Topic<Data, Params> = ((params: Params) => Promise<Data>) & {
   subscribe: (consumer: (d: Data) => void, params: Params, options?: CallOptions) => Promise<void>
   unsubscribe: (consumer: (d: Data) => void, params: Params, options?: CallOptions) => Promise<void>
+  itemName: string
 }
 
 /** Copied from PushRPC/Next */
