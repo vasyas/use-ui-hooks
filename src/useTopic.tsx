@@ -9,7 +9,8 @@ export function useTopic<Data, Params>(
 ): {
   /** Loaded data or default value */
   data: Data
-  /** True if loading request is in progress */
+
+  /** True if loading request is in progress or loading request failed */
   loading: boolean
 } {
   const {resetOnChange, subscribe = true, ...callOpts} = opts || {}
@@ -24,11 +25,6 @@ export function useTopic<Data, Params>(
     setLoading(false)
   }, [])
 
-  const errorHandler = useCallback((e: any) => {
-    // ignore error, just mark loading ended
-    setLoading(false)
-  }, [])
-
   useEffect(() => {
     if (params) {
       setLoading(true)
@@ -37,12 +33,12 @@ export function useTopic<Data, Params>(
         if (callOpts.timeout) {
           topic
             .subscribe(receiveData, params, new CallOptions({timeout: callOpts.timeout}))
-            .catch(errorHandler)
+            .catch(opts?.onError)
         } else {
-          topic.subscribe(receiveData, params).catch(errorHandler)
+          topic.subscribe(receiveData, params).catch(opts?.onError)
         }
       } else {
-        topic(params).then(receiveData).catch(errorHandler)
+        topic(params).then(receiveData).catch(opts?.onError)
       }
     }
 
@@ -64,6 +60,7 @@ type Options = {
   resetOnChange?: boolean
   timeout?: number
   subscribe?: boolean
+  onError?: (e: Error) => void
 }
 
 export type GetCachedTopic = (itemName: string, parameters: unknown[]) => unknown

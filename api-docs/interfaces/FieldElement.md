@@ -24,7 +24,7 @@ Input components register themselves in the form using this adapter
 
 #### Defined in
 
-[useForm.tsx:348](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useForm.tsx#L348)
+[useForm.tsx:348](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/useForm.tsx#L348)
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-[useForm.tsx:349](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useForm.tsx#L349)
+[useForm.tsx:349](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/useForm.tsx#L349)
 
 ## Methods
 
@@ -48,7 +48,7 @@ ___
 
 #### Defined in
 
-[useForm.tsx:351](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useForm.tsx#L351)
+[useForm.tsx:351](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/useForm.tsx#L351)
 
 ___
 
@@ -62,4 +62,4 @@ ___
 
 #### Defined in
 
-[useForm.tsx:350](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useForm.tsx#L350)
+[useForm.tsx:350](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/useForm.tsx#L350)

@@ -29,7 +29,7 @@ Start async action
 
 #### Defined in
 
-[useActions.ts:80](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useActions.ts#L80)
+[useActions.ts:80](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/useActions.ts#L80)
 
 ## Table of contents
 
@@ -47,4 +47,4 @@ This if this action is in progress
 
 #### Defined in
 
-[useActions.ts:82](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useActions.ts#L82)
+[useActions.ts:82](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/useActions.ts#L82)

@@ -29,6 +29,7 @@
 - [getFieldType](README.md#getfieldtype)
 - [oneTimeField](README.md#onetimefield)
 - [setActionsMiddleware](README.md#setactionsmiddleware)
+- [setTopicCache](README.md#settopiccache)
 - [useActions](README.md#useactions)
 - [useForm](README.md#useform)
 - [usePrevious](README.md#useprevious)
@@ -66,7 +67,7 @@ Action implementations should be async and accept at most one parameter
 
 #### Defined in
 
-[useActions.ts:76](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useActions.ts#L76)
+[useActions.ts:76](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/useActions.ts#L76)
 
 ___
 
@@ -78,7 +79,7 @@ Names of pre-defined [FieldType](interfaces/FieldType.md)s
 
 #### Defined in
 
-[fieldTypes.ts:8](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/fieldTypes.ts#L8)
+[fieldTypes.ts:8](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/fieldTypes.ts#L8)
 
 ___
 
@@ -111,7 +112,7 @@ Form state + form actions (see [Actions](interfaces/Actions.md),
 
 #### Defined in
 
-[useForm.tsx:307](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useForm.tsx#L307)
+[useForm.tsx:307](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/useForm.tsx#L307)
 
 ___
 
@@ -121,7 +122,7 @@ ___
 
 #### Defined in
 
-[validate.ts:54](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/validate.ts#L54)
+[validate.ts:54](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/validate.ts#L54)
 
 ___
 
@@ -150,7 +151,7 @@ null if not errors or error message is validator fails
 
 #### Defined in
 
-[validate.ts:63](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/validate.ts#L63)
+[validate.ts:63](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/validate.ts#L63)
 
 ## Functions
 
@@ -172,7 +173,7 @@ Install [Result](interfaces/Result.md), used to track action results
 
 #### Defined in
 
-[result.tsx:24](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/result.tsx#L24)
+[result.tsx:24](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/result.tsx#L24)
 
 ___
 
@@ -197,7 +198,7 @@ Be careful not to use propertyKeys that could mess with other propeties, ie `chi
 
 #### Defined in
 
-[validate.ts:73](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/validate.ts#L73)
+[validate.ts:73](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/validate.ts#L73)
 
 ___
 
@@ -219,7 +220,7 @@ Return FieldType from its name
 
 #### Defined in
 
-[fieldTypes.ts:38](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/fieldTypes.ts#L38)
+[fieldTypes.ts:38](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/fieldTypes.ts#L38)
 
 ___
 
@@ -254,7 +255,7 @@ Typical use case - inline edit:
 
 #### Defined in
 
-[utils.tsx:32](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/utils.tsx#L32)
+[utils.tsx:32](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/utils.tsx#L32)
 
 ___
 
@@ -274,7 +275,27 @@ ___
 
 #### Defined in
 
-[useActions.ts:91](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useActions.ts#L91)
+[useActions.ts:91](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/useActions.ts#L91)
+
+___
+
+### setTopicCache
+
+▸ **setTopicCache**(`t`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `t` | `GetCachedTopic` |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[useTopic.tsx:70](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/useTopic.tsx#L70)
 
 ___
 
@@ -311,7 +332,7 @@ In addition, action functions calls preventDefault for its first parameter, whic
 
 #### Defined in
 
-[useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useActions.ts#L27)
+[useActions.ts:27](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/useActions.ts#L27)
 
 ___
 
@@ -391,7 +412,7 @@ const form = useForm<LoginData>(async () => await fetchInitialData(params))
 
 #### Defined in
 
-[useForm.tsx:64](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useForm.tsx#L64)
+[useForm.tsx:64](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/useForm.tsx#L64)
 
 ___
 
@@ -419,7 +440,7 @@ Return value from previous render.
 
 #### Defined in
 
-[utils.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/utils.tsx#L6)
+[utils.tsx:6](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/utils.tsx#L6)
 
 ___
 
@@ -455,7 +476,7 @@ ___
 
 #### Defined in
 
-[useRefetchingTopic.ts:4](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useRefetchingTopic.ts#L4)
+[useRefetchingTopic.ts:4](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/useRefetchingTopic.ts#L4)
 
 ___
 
@@ -475,7 +496,7 @@ Result is auto-cleared on history change.
 
 #### Defined in
 
-[result.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/result.tsx#L13)
+[result.tsx:13](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/result.tsx#L13)
 
 ___
 
@@ -506,8 +527,8 @@ ___
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `data` | `Data` | Loaded data or default value |
-| `loading` | `boolean` | True if loading request is in progress |
+| `loading` | `boolean` | True if loading request is in progress or loading request failed |
 
 #### Defined in
 
-[useTopic.tsx:4](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/useTopic.tsx#L4)
+[useTopic.tsx:4](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/useTopic.tsx#L4)

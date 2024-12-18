@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[result.tsx:45](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/result.tsx#L45)
+[result.tsx:45](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/result.tsx#L45)
 
 ## Methods
 
@@ -40,4 +40,4 @@
 
 #### Defined in
 
-[result.tsx:46](https://github.com/vasyas/use-ui-hooks/blob/e786782/src/result.tsx#L46)
+[result.tsx:46](https://github.com/vasyas/use-ui-hooks/blob/9c0eb7b/src/result.tsx#L46)
